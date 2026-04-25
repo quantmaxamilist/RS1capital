@@ -37,9 +37,10 @@ const stats = [
 
 <!-- NAV -->
 <nav style="position:fixed;top:37px;left:0;right:0;z-index:100;">
-  <div style="background:rgba(13,27,62,0.97);backdrop-filter:blur(20px);border-bottom:0.5px solid rgba(192,200,216,0.15);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;width:100%;box-sizing:border-box;">
+  <div style="background:rgba(13,27,62,0.97);backdrop-filter:blur(20px);border-bottom:0.5px solid rgba(192,200,216,0.15);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;width:100%;box-sizing:border-box;">
     <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;">
-      <img src="/logo.jpg" alt="Nathan Staples Plastering" style="height:56px;object-fit:contain;" />
+      <img src="/logo.jpg" alt="Nathan Staples Plastering" style="height:44px;object-fit:contain;" />
+      <span style="font-family:'Bebas Neue',sans-serif;color:#ffffff;font-size:20px;letter-spacing:0.06em;white-space:nowrap;">Nathan Staples <span style="color:#c0c8d8;">Plastering</span></span>
     </a>
     <div id="nav-desktop" style="display:flex;gap:28px;position:absolute;left:50%;transform:translateX(-50%);">
       <a href="#services" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;">Services</a>
@@ -305,7 +306,8 @@ const stats = [
 @media (max-width: 768px) {
   #nav-desktop { display: none !important; }
   #hamburger { display: flex !important; }
-  nav a[href^="tel"] { display: none !important; }
+  nav > div > a:first-child span { display: none !important; }
+  nav > div { padding: 0 16px !important; }
   section#hero { padding: 0 20px !important; }
   section#hero > div:last-of-type { grid-template-columns: 1fr !important; padding-top: 110px !important; min-height: auto !important; gap: 24px !important; }
   section#hero h1 { font-size: clamp(52px,14vw,80px) !important; }
@@ -313,9 +315,11 @@ const stats = [
   #hero-right > div { width: 100% !important; }
   #services > div > div { grid-template-columns: 1fr !important; }
   #projects > div > div { columns: 1 !important; }
-  #before-after > div > div:last-of-type > div { grid-template-columns: 1fr !important; }
+  #before-after > div > div > div > div { grid-template-columns: 1fr !important; }
   #contact > div > form > div:first-of-type { grid-template-columns: 1fr !important; }
+  #reviews > div > div:last-of-type { grid-template-columns: 1fr !important; }
   footer { flex-direction: column !important; text-align: center !important; }
+  footer > div { flex-wrap: wrap !important; justify-content: center !important; gap: 16px !important; }
   section:has(> div > div[style*="repeat(3"]) > div > div { grid-template-columns: 1fr !important; }
 }
 </style>
@@ -348,7 +352,15 @@ function toggleMobileMenu() {
 document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
   if (hamburger) {
-    hamburger.addEventListener('touchend', e => { e.preventDefault(); toggleMobileMenu(); });
+    hamburger.style.minWidth = '44px';
+    hamburger.style.minHeight = '44px';
+    hamburger.style.justifyContent = 'center';
+    hamburger.addEventListener('click', toggleMobileMenu);
+    hamburger.addEventListener('touchend', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
   }
 });
 </script>
