@@ -1,0 +1,93 @@
+﻿---
+interface Props { title?: string; description?: string; }
+const {
+  title = "Nathan Staples Plastering LTD | Silicon Render Specialists | Cardiff — 07908 641834",
+  description = "Nathan Staples Plastering LTD — Certified Johnstones Silicon Render Specialists. EWI registered, 17 years experience. Call 07908 641834 for your free quote.",
+} = Astro.props;
+const schemaLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Nathan Staples Plastering LTD",
+  description: "Certified silicon render and plastering specialists based in Cardiff, South Wales.",
+  telephone: "02920037700",
+  url: "https://nathanstaplesplastering.co.uk",
+  areaServed: "South Wales",
+  priceRange: "££",
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaLd)} />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0d1b3e;
+      color: #ffffff;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    ::selection { background: rgba(192,200,216,0.2); }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+      background: #c0c8d8; border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; width: 36px; height: 36px;
+      border: 0.5px solid rgba(192,200,216,0.5); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width 0.3s, height 0.3s;
+    }
+    body.hovered #cursor-ring { width: 52px; height: 52px; }
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-dot, #cursor-ring { display: none !important; }
+      body { cursor: auto !important; }
+    }
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: #0d1b3e; }
+    ::-webkit-scrollbar-thumb { background: rgba(192,200,216,0.3); }
+    @keyframes brickReveal { 0% { clip-path: inset(100% 0 0 0); } 100% { clip-path: inset(0% 0 0 0); } }
+    @keyframes slowZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.0); } }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  </style>
+</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <slot />
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
+    });
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function tick() {
+      if (dot) { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }
+      rx = lerp(rx, mx, 0.09); ry = lerp(ry, my, 0.09);
+      if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body>
+</html>
