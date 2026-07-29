@@ -1,18 +1,41 @@
 ﻿---
 interface Props { title?: string; description?: string; }
 const {
-  title = "Nathan Staples Plastering LTD | Silicon Render Specialists | Cardiff — 07908 641834",
-  description = "Nathan Staples Plastering LTD — Certified Johnstones Silicon Render Specialists. EWI registered, 17 years experience. Call 07908 641834 for your free quote.",
+  title = "J.L. Hughes Carpentry | Carpenter Haverfordwest | Kitchen Fitting Pembrokeshire",
+  description = "J.L. Hughes Carpentry — kitchen fitting, 1st & 2nd fix, bespoke staircases, joinery and roofing in Haverfordwest, Pembrokeshire. Call 07495 471877 for a free quote.",
 } = Astro.props;
+
 const schemaLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Nathan Staples Plastering LTD",
-  description: "Certified silicon render and plastering specialists based in Cardiff, South Wales.",
-  telephone: "07908641834",
-  url: "https://nathanstaplesplastering.co.uk",
-  areaServed: "South Wales",
+  name: "J.L. Hughes Carpentry",
+  description:
+    "J.L. Hughes Carpentry undertakes all aspects of carpentry work including kitchen fitting, 1st & 2nd fix, bespoke staircase & joinery installation, traditional cut & trussed roofing, CIS contracting, domestic & commercial works, based in Pembrokeshire.",
+  telephone: "+447495471877",
+  email: "jlhughescarpentry@hotmail.com",
+  url: "https://jlhughescarpentry.co.uk",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Haverfordwest",
+    addressRegion: "Pembrokeshire",
+    addressCountry: "GB",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.801,
+    longitude: -4.969,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "16:30",
+    },
+  ],
+  areaServed: "Pembrokeshire",
   priceRange: "££",
+  sameAs: ["https://www.facebook.com/J.L.HughesCarpentry/"],
 };
 ---
 <!DOCTYPE html>
@@ -29,27 +52,28 @@ const schemaLd = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="application/ld+json" set:html={JSON.stringify(schemaLd)} />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #0d1b3e;
+      background: #02184a;
       color: #ffffff;
       font-family: 'DM Sans', sans-serif;
       overflow-x: hidden;
       cursor: none;
     }
-    ::selection { background: rgba(192,200,216,0.2); }
+    ::selection { background: rgba(247,2,0,0.25); }
     #cursor-dot {
       position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-      background: #c0c8d8; border-radius: 50%;
+      background: #f70200; border-radius: 50%;
       pointer-events: none; z-index: 9999;
       transform: translate(-50%,-50%);
     }
     #cursor-ring {
       position: fixed; top: 0; left: 0; width: 36px; height: 36px;
-      border: 0.5px solid rgba(192,200,216,0.5); border-radius: 50%;
+      border: 0.5px solid rgba(247,2,0,0.5); border-radius: 50%;
       pointer-events: none; z-index: 9998;
       transform: translate(-50%,-50%);
       transition: width 0.3s, height 0.3s;
@@ -60,11 +84,28 @@ const schemaLd = {
       body { cursor: auto !important; }
     }
     ::-webkit-scrollbar { width: 2px; }
-    ::-webkit-scrollbar-track { background: #0d1b3e; }
-    ::-webkit-scrollbar-thumb { background: rgba(192,200,216,0.3); }
+    ::-webkit-scrollbar-track { background: #02184a; }
+    ::-webkit-scrollbar-thumb { background: rgba(247,2,0,0.35); }
     @keyframes brickReveal { 0% { clip-path: inset(100% 0 0 0); } 100% { clip-path: inset(0% 0 0 0); } }
     @keyframes slowZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.0); } }
     @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(2,24,74,0.95);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(1100px, 100%);
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 1px;
+    }
   </style>
 </head>
 <body>
