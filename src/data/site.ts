@@ -26,18 +26,11 @@ export interface AudienceCard {
   description: string;
 }
 
-export interface InsightItem {
-  category: string;
-  headline: string;
-  tag: string;
-}
-
 export const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Approach', href: '#approach' },
   { label: 'Case Studies', href: '#case-studies' },
-  { label: 'Insights', href: '#insights' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -116,25 +109,6 @@ export const audienceCards: AudienceCard[] = [
   },
 ];
 
-/** PLACEHOLDER — replace with real posts, or hide section until content exists */
-export const insightItems: InsightItem[] = [
-  {
-    category: 'PLACEHOLDER',
-    headline: '[Insight post title — replace with real content]',
-    tag: 'TOPIC',
-  },
-  {
-    category: 'PLACEHOLDER',
-    headline: '[Insight post title — replace with real content]',
-    tag: 'TOPIC',
-  },
-  {
-    category: 'PLACEHOLDER',
-    headline: '[Insight post title — replace with real content]',
-    tag: 'TOPIC',
-  },
-];
-
 export const pillars = [
   {
     id: 'capital',
@@ -170,7 +144,6 @@ export const footerLinks = {
   ],
   col2: [
     { label: 'Case Studies', href: '#case-studies' },
-    { label: 'Insights', href: '#insights' },
     { label: 'Contact', href: '#contact' },
   ],
 };

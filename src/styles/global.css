@@ -154,7 +154,6 @@ button:focus-visible {
   .reveal-item,
   .triangle-path,
   .pillar-item,
-  .buzz-card,
   .stat-item {
     opacity: 1 !important;
     transform: none !important;
@@ -249,14 +248,4 @@ button:focus-visible {
 .network-rail > * {
   scroll-snap-align: start;
   flex-shrink: 0;
-}
-
-/* Buzz card hover lift */
-.buzz-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.buzz-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(8, 8, 8, 0.15);
 }

@@ -204,35 +204,6 @@ function initStatCounters(): void {
   });
 }
 
-function initBuzzCards(): void {
-  const cards = document.querySelectorAll<HTMLElement>('.buzz-card');
-  if (!cards.length) return;
-
-  if (prefersReducedMotion) {
-    cards.forEach((c) => {
-      c.style.opacity = '1';
-    });
-    return;
-  }
-
-  gsap.fromTo(
-    cards,
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      stagger: 0.12,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: cards[0]?.parentElement,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    },
-  );
-}
-
 export function initAnimations(): void {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -241,7 +212,6 @@ export function initAnimations(): void {
   initScrollReveals();
   initTriangleAnimation();
   initStatCounters();
-  initBuzzCards();
 }
 
 if (document.readyState === 'loading') {
