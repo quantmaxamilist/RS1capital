@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { class: className = '', light = false } = Astro.props;
-const textColor = light ? 'text-paper' : 'text-paper';
+const textColor = light ? 'text-black' : 'text-mist';
 ---
 
 <a href="/" class:list={['inline-flex flex-col items-center group', className]} aria-label="Northmark Ventures home">
@@ -24,7 +24,7 @@ const textColor = light ? 'text-paper' : 'text-paper';
   >
     <path
       d="M 4 10 Q 32 0 60 10"
-      stroke="#22e0b7"
+      stroke="#c9a227"
       stroke-width="0.75"
       fill="none"
     />

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #071429;
-  --color-navy: #0a1c38;
-  --color-navy-2: #0e2547;
-  --color-aqua: #22e0b7;
-  --color-aqua-2: #1fb6d6;
-  --color-sky: #a9def5;
-  --color-paper: #f6f8fb;
-  --color-mist: #eef4f8;
+  --color-black: #080808;
+  --color-panel: #111111;
+  --color-charcoal: #1a1a1a;
+  --color-gold: #c9a227;
+  --color-gold-2: #e6c458;
+  --color-ivory: #f4f0e6;
+  --color-paper: #f7f5ef;
+  --color-mist: #f0ece0;
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Hanken Grotesk", system-ui, sans-serif;
 }
@@ -42,21 +42,21 @@ html.lenis body {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-black);
+  color: var(--color-mist);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(34, 224, 183, 0.25);
+  background: rgba(201, 162, 39, 0.25);
   color: var(--color-paper);
 }
 
 /* Focus states */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-aqua);
+  outline: 2px solid var(--color-gold);
   outline-offset: 3px;
 }
 
@@ -67,7 +67,7 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-aqua);
+  color: var(--color-gold);
 }
 
 /* Display heading */
@@ -84,7 +84,7 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-aqua);
+  color: var(--color-gold);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -99,26 +99,26 @@ button:focus-visible {
     -45deg,
     transparent,
     transparent 4px,
-    rgba(34, 224, 183, 0.15) 4px,
-    rgba(34, 224, 183, 0.15) 5px
+    rgba(201, 162, 39, 0.15) 4px,
+    rgba(201, 162, 39, 0.15) 5px
   );
 }
 
-/* Aqua gradient glow */
-.glow-aqua {
+/* Gold gradient glow */
+.glow-gold {
   background: radial-gradient(
     ellipse 80% 50% at 50% 100%,
-    rgba(34, 224, 183, 0.35) 0%,
-    rgba(31, 182, 214, 0.15) 40%,
+    rgba(201, 162, 39, 0.38) 0%,
+    rgba(230, 196, 88, 0.18) 40%,
     transparent 70%
   );
 }
 
-.glow-aqua-bottom-left {
+.glow-gold-bottom-left {
   background: radial-gradient(
     ellipse 60% 50% at 0% 100%,
-    rgba(34, 224, 183, 0.25) 0%,
-    rgba(31, 182, 214, 0.1) 50%,
+    rgba(201, 162, 39, 0.35) 0%,
+    rgba(230, 196, 88, 0.15) 50%,
     transparent 70%
   );
 }
@@ -169,8 +169,8 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-navy);
-  border: 1px solid var(--color-navy);
+  color: var(--color-black);
+  border: 1px solid var(--color-black);
   border-radius: 9999px;
   padding: 0.625rem 1.25rem;
   text-decoration: none;
@@ -178,8 +178,8 @@ button:focus-visible {
 }
 
 .view-all-pill:hover {
-  background: var(--color-navy);
-  color: var(--color-paper);
+  background: var(--color-black);
+  color: var(--color-gold);
 }
 
 /* Portfolio accordion strip */
@@ -258,5 +258,5 @@ button:focus-visible {
 
 .buzz-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(7, 20, 41, 0.12);
+  box-shadow: 0 12px 40px rgba(8, 8, 8, 0.15);
 }

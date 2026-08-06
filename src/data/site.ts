@@ -75,14 +75,14 @@ export const portfolioCompanies: PortfolioCompany[] = [
     blurb: 'Robotics, software and advanced materials that build homes in half the time, at half the cost.',
     quote: "Northmark backed us before we'd poured our first wall — an essential partner in our growth.",
     attribution: 'Dana Ellison, Co-Founder & CEO, Aerloom',
-    gradient: 'linear-gradient(135deg, #0e2547 0%, #1fb6d6 40%, #22e0b7 70%, #071429 100%)',
+    gradient: 'linear-gradient(135deg, #1a1a1a 0%, #e6c458 40%, #c9a227 70%, #080808 100%)',
     expanded: true,
   },
   {
     id: 'verity',
     name: 'Verity',
     blurb: 'A single platform to verify and secure every customer authorization.',
-    gradient: 'linear-gradient(145deg, #071429 0%, #0a1c38 35%, #1fb6d6 65%, #22e0b7 100%)',
+    gradient: 'linear-gradient(145deg, #080808 0%, #111111 35%, #e6c458 65%, #c9a227 100%)',
   },
   {
     id: 'qora',
@@ -90,13 +90,13 @@ export const portfolioCompanies: PortfolioCompany[] = [
     blurb: 'Cultural-intelligence AI that turns taste data into business insight.',
     quote: "Northmark's industry depth, guidance and network have accelerated everything we do.",
     attribution: 'Alex Moreno, Founder & CEO, Qora',
-    gradient: 'linear-gradient(160deg, #0e2547 0%, #22e0b7 45%, #a9def5 75%, #071429 100%)',
+    gradient: 'linear-gradient(160deg, #1a1a1a 0%, #c9a227 45%, #f4f0e6 75%, #080808 100%)',
   },
   {
     id: 'vireo',
     name: 'Vireo',
     blurb: 'No-code AI that turns raw data into intelligent business decisions.',
-    gradient: 'linear-gradient(120deg, #071429 0%, #1fb6d6 50%, #0e2547 100%)',
+    gradient: 'linear-gradient(120deg, #080808 0%, #c9a227 50%, #1a1a1a 100%)',
   },
 ];
 

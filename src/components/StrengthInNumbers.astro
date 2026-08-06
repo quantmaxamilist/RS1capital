@@ -4,7 +4,7 @@ import { stats } from '../data/site';
 
 <section
   id="insights"
-  class="relative bg-sky py-24 lg:py-32 overflow-hidden"
+  class="relative bg-ivory py-24 lg:py-32 overflow-hidden"
   aria-labelledby="stats-heading"
 >
   <div class="absolute top-0 left-0 w-24 h-24 hatch-corner opacity-40 pointer-events-none" aria-hidden="true"></div>
@@ -13,7 +13,7 @@ import { stats } from '../data/site';
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
     <h2
       id="stats-heading"
-      class="heading-display text-[clamp(2rem,4vw,3rem)] text-navy mb-16 reveal-item"
+      class="heading-display text-[clamp(2rem,4vw,3rem)] text-black mb-16 reveal-item"
     >
       Strength in Numbers
     </h2>
@@ -22,12 +22,12 @@ import { stats } from '../data/site';
       {
         stats.map((stat) => (
           <div class="stat-item reveal-item" data-stat={JSON.stringify(stat)}>
-            <p class="font-body font-normal text-[clamp(2.5rem,5vw,3.5rem)] text-navy leading-none mb-3 stat-number">
+            <p class="font-body font-normal text-[clamp(2.5rem,5vw,3.5rem)] text-gold leading-none mb-3 stat-number">
               <span class="stat-prefix">{stat.prefix ?? ''}</span>
               <span class="stat-value">0</span>
               <span class="stat-suffix">{stat.suffix ?? ''}</span>
             </p>
-            <p class="font-body text-sm font-medium text-navy/70 tracking-wide">{stat.label}</p>
+            <p class="font-body text-sm font-medium text-black/70 tracking-wide">{stat.label}</p>
           </div>
         ))
       }

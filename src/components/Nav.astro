@@ -21,7 +21,7 @@ import { navLinks } from '../data/site';
           <li>
             <a
               href={link.href}
-              class="font-body text-[0.6875rem] font-medium tracking-[0.12em] uppercase text-paper/70 hover:text-aqua transition-colors"
+              class="font-body text-[0.6875rem] font-medium tracking-[0.12em] uppercase text-mist/70 hover:text-gold transition-colors"
             >
               {link.label}
             </a>
@@ -38,15 +38,15 @@ import { navLinks } from '../data/site';
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <span class="nav-bar block w-5 h-px bg-aqua transition-all duration-300"></span>
-      <span class="nav-bar block w-5 h-px bg-aqua transition-all duration-300"></span>
-      <span class="nav-bar block w-5 h-px bg-aqua transition-all duration-300"></span>
+      <span class="nav-bar block w-5 h-px bg-gold transition-all duration-300"></span>
+      <span class="nav-bar block w-5 h-px bg-gold transition-all duration-300"></span>
+      <span class="nav-bar block w-5 h-px bg-gold transition-all duration-300"></span>
     </button>
   </nav>
 
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-[99] bg-navy/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+    class="fixed inset-0 z-[99] bg-black/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
     style="top: var(--announcement-height, 40px);"
     aria-hidden="true"
   >
@@ -54,7 +54,7 @@ import { navLinks } from '../data/site';
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-nav-link font-display text-3xl font-semibold text-paper hover:text-aqua transition-colors tracking-wide"
+          class="mobile-nav-link font-display text-3xl font-semibold text-mist hover:text-gold transition-colors tracking-wide"
         >
           {link.label}
         </a>
@@ -65,7 +65,7 @@ import { navLinks } from '../data/site';
 
 <style>
   #main-nav.scrolled {
-    background: rgba(10, 28, 56, 0.92);
+    background: rgba(8, 8, 8, 0.92);
     backdrop-filter: blur(12px);
     height: 3.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);

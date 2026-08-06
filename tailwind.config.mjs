@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#071429',
-        navy: '#0a1c38',
-        'navy-2': '#0e2547',
-        aqua: '#22e0b7',
-        'aqua-2': '#1fb6d6',
-        sky: '#a9def5',
-        paper: '#f6f8fb',
-        mist: '#eef4f8',
+        black: '#080808',
+        panel: '#111111',
+        charcoal: '#1a1a1a',
+        gold: '#c9a227',
+        'gold-2': '#e6c458',
+        ivory: '#f4f0e6',
+        paper: '#f7f5ef',
+        mist: '#f0ece0',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],

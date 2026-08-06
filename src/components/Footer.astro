@@ -15,8 +15,8 @@ const footerLinks = {
 };
 ---
 
-<footer id="contact" class="relative bg-ink pt-20 pb-8 overflow-hidden" aria-label="Site footer">
-  <div class="absolute bottom-0 left-0 w-1/2 h-1/2 glow-aqua-bottom-left pointer-events-none opacity-50" aria-hidden="true"></div>
+<footer id="contact" class="relative bg-black pt-20 pb-8 overflow-hidden" aria-label="Site footer">
+  <div class="absolute bottom-0 left-0 w-1/2 h-1/2 glow-gold-bottom-left pointer-events-none opacity-40" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
     <div class="grid md:grid-cols-3 gap-12 mb-16 items-start">
@@ -25,7 +25,7 @@ const footerLinks = {
       </div>
 
       <!-- swap real address when approved -->
-      <address class="font-body text-sm text-paper/70 not-italic leading-relaxed text-center md:text-left">
+      <address class="font-body text-sm text-mist/70 not-italic leading-relaxed text-center md:text-left">
         Northmark Ventures<br />
         123 Placeholder Ave, Suite 000<br />
         Chicago, IL 60600
@@ -35,7 +35,7 @@ const footerLinks = {
         <div class="flex flex-col gap-3">
           {
             footerLinks.col1.map((link) => (
-              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-paper/60 hover:text-aqua transition-colors uppercase">
+              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-mist/60 hover:text-gold transition-colors uppercase">
                 {link.label}
               </a>
             ))
@@ -44,7 +44,7 @@ const footerLinks = {
         <div class="flex flex-col gap-3">
           {
             footerLinks.col2.map((link) => (
-              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-paper/60 hover:text-aqua transition-colors uppercase">
+              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-mist/60 hover:text-gold transition-colors uppercase">
                 {link.label}
               </a>
             ))
@@ -59,7 +59,7 @@ const footerLinks = {
           href="https://www.linkedin.com/company/northmark-ventures"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-paper/50 hover:text-aqua transition-colors w-10 h-10 flex items-center justify-center"
+          class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
           aria-label="LinkedIn"
         >
           <i class="fa-brands fa-linkedin-in text-lg" aria-hidden="true"></i>
@@ -68,18 +68,18 @@ const footerLinks = {
           href="https://www.youtube.com/@northmarkventures"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-paper/50 hover:text-aqua transition-colors w-10 h-10 flex items-center justify-center"
+          class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
           aria-label="YouTube"
         >
           <i class="fa-brands fa-youtube text-lg" aria-hidden="true"></i>
         </a>
       </div>
 
-      <p class="font-body text-xs text-paper/40">
+      <p class="font-body text-xs text-mist/40">
         © 2026 Northmark Ventures. All rights reserved.
       </p>
 
-      <a href="#privacy" class="font-body text-xs text-paper/50 hover:text-aqua transition-colors">
+      <a href="#privacy" class="font-body text-xs text-mist/50 hover:text-gold transition-colors">
         Privacy Policy
       </a>
     </div>
