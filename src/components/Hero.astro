@@ -20,7 +20,7 @@
       SPEED • CERTAINTY • PRAGMATISM
     </p>
 
-    <h1 class="heading-display text-[clamp(2.75rem,7vw,4.5rem)] text-mist mb-8">
+    <h1 class="hero-headline heading-display text-[clamp(2.75rem,7vw,4.5rem)] text-mist mb-8">
       <span class="hero-line block opacity-0 translate-y-8">Capital and expertise</span>
       <span class="hero-line block opacity-0 translate-y-8">for critical moments.</span>
     </h1>
@@ -37,10 +37,14 @@
 </section>
 
 <style>
+  .hero-headline {
+    letter-spacing: -0.015em;
+  }
+
   .hero-glow-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(100px);
     will-change: transform, opacity;
     transform: translate3d(0, 0, 0);
   }

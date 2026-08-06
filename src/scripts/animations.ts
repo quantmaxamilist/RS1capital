@@ -50,7 +50,7 @@ function initHeroGlowMotion(): void {
       yPercent: 3,
       scale: 1.15,
       opacity: 0.48,
-      duration: 12,
+      duration: 9,
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1,
@@ -65,7 +65,7 @@ function initHeroGlowMotion(): void {
       yPercent: -3,
       scale: 1.12,
       opacity: 0.46,
-      duration: 15,
+      duration: 14,
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1,
@@ -76,17 +76,15 @@ function initHeroGlowMotion(): void {
 
 function initHeroAnimations(): void {
   if (prefersReducedMotion) {
-    gsap.set(['.hero-eyebrow', '.hero-line', '.hero-sub'], {
-      opacity: 1,
-      y: 0,
-      letterSpacing: '0.2em',
-    });
+    gsap.set('.hero-eyebrow', { opacity: 1, letterSpacing: '0.2em' });
+    gsap.set(['.hero-line', '.hero-sub'], { opacity: 1, y: 0 });
+    gsap.set('.hero-line', { letterSpacing: '-0.015em' });
     initHeroGlowMotion();
     return;
   }
 
   gsap.set('.hero-eyebrow', { opacity: 0, letterSpacing: '0.5em' });
-  gsap.set('.hero-line', { opacity: 0, y: 40 });
+  gsap.set('.hero-line', { opacity: 0, y: 40, letterSpacing: '-0.015em' });
   gsap.set('.hero-sub', { opacity: 0, y: 20 });
   gsap.set('#hero-glow', { opacity: 0 });
 
