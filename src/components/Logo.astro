@@ -1,0 +1,20 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  variant?: 'full' | 'mark';
+  class?: string;
+}
+
+const { variant = 'full', class: className = '' } = Astro.props;
+
+const markPath = path.join(process.cwd(), 'public', 'rs1-mark.png');
+const useMark = variant === 'mark' && fs.existsSync(markPath);
+const src = useMark ? '/rs1-mark.png' : '/rs1-logo.png';
+const imgClass = variant === 'mark' ? 'h-8 w-auto' : 'h-9 md:h-10 w-auto';
+---
+
+<a href="/" class:list={['inline-block', className]} aria-label="RS1 Capital home">
+  <img src={src} alt="RS1 Capital" class={imgClass} width="160" height="40" />
+</a>

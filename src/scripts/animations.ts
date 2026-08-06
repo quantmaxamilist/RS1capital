@@ -160,7 +160,7 @@ function animateStatCounter(
   const valueEl = el.querySelector('.stat-value');
   if (!valueEl) return;
 
-  const target = stat.numericTarget;
+  const target = stat.numericTarget ?? 0;
   const obj = { val: 0 };
 
   gsap.to(obj, {
@@ -181,11 +181,15 @@ function animateStatCounter(
 
 function initStatCounters(): void {
   document.querySelectorAll<HTMLElement>('.stat-item').forEach((el) => {
+    if (el.getAttribute('data-placeholder') === 'true') return;
+
     const raw = el.getAttribute('data-stat');
     if (!raw) return;
 
     try {
       const stat = JSON.parse(raw) as StatItem;
+      if (stat.placeholder || stat.numericTarget === undefined) return;
+
       if (prefersReducedMotion) {
         const valueEl = el.querySelector('.stat-value');
         if (valueEl) {

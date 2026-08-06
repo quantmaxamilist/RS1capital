@@ -1,32 +1,27 @@
 ---
-import { networkMembers } from '../data/site';
+import { audienceCards } from '../data/site';
 ---
 
-<section id="network" class="bg-white py-24 lg:py-32" aria-labelledby="network-heading">
+<section id="who-we-work-with" class="bg-white py-24 lg:py-32" aria-labelledby="audience-heading">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="flex items-start justify-between gap-6 mb-12">
-      <h2 id="network-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-black">
-        Meet the Network
+      <h2 id="audience-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-black">
+        Who We Work With
       </h2>
-      <a href="#network" class="view-all-pill shrink-0">VIEW ALL</a>
     </div>
 
-    <!-- Replace placeholder portraits with real approved headshots -->
     <div id="network-rail" class="network-rail mb-10" role="list">
       {
-        networkMembers.map((member) => (
+        audienceCards.map((card) => (
           <article
-            class="w-52 md:w-56 rounded-xl overflow-hidden relative aspect-[3/4] bg-gradient-to-b from-charcoal to-black shrink-0"
+            class="w-64 md:w-72 rounded-xl overflow-hidden relative bg-black shrink-0 p-8 flex flex-col justify-end min-h-[16rem]"
             role="listitem"
           >
-            <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-              <i class="fa-solid fa-user text-4xl text-mist/15"></i>
-              <span class="absolute font-display text-3xl font-semibold text-gold/30">{member.initials}</span>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-4">
-              <p class="font-body font-semibold text-mist text-sm leading-tight">{member.name}</p>
-              <p class="font-body text-xs text-mist/65 mt-1 leading-snug">{member.title}</p>
+            <div class="absolute inset-0 bg-gradient-to-br from-charcoal via-black to-gold/10" aria-hidden="true"></div>
+            <div class="absolute top-6 right-6 w-12 h-12 hatch-corner rounded-sm opacity-60" aria-hidden="true"></div>
+            <div class="relative">
+              <h3 class="font-display text-xl font-semibold text-gold mb-3">{card.title}</h3>
+              <p class="font-body text-sm text-mist/75 leading-relaxed">{card.description}</p>
             </div>
           </article>
         ))
@@ -35,10 +30,10 @@ import { networkMembers } from '../data/site';
 
     <div class="text-center">
       <a
-        href="#network"
+        href="#contact"
         class="inline-block font-body text-xs font-semibold tracking-[0.16em] uppercase bg-gold text-black px-8 py-3.5 rounded-sm hover:bg-gold-2 transition-colors"
       >
-        RSVP NOW
+        Get in touch
       </a>
     </div>
   </div>

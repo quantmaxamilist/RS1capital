@@ -1,18 +1,19 @@
 ---
-import { marqueeLogos } from '../data/site';
+import { marqueeKeywords } from '../data/site';
 
-const doubled = [...marqueeLogos, ...marqueeLogos];
+const doubled = [...marqueeKeywords, ...marqueeKeywords];
 ---
 
-<section class="bg-panel py-10 overflow-hidden border-y border-white/5" aria-label="Portfolio company logos">
-  <div class="marquee-track flex w-max gap-16 px-8">
+<section class="bg-panel py-10 overflow-hidden border-y border-white/5" aria-label="Core capabilities">
+  <div class="marquee-track flex w-max px-8 items-center">
     {
-      doubled.map((logo, i) => (
+      doubled.map((keyword, i) => (
         <span
-          class="font-display text-2xl md:text-3xl font-semibold text-gold/40 whitespace-nowrap tracking-wide"
-          aria-hidden={i >= marqueeLogos.length}
+          class="font-body text-sm md:text-base font-medium text-gold/50 whitespace-nowrap tracking-wide uppercase inline-flex items-center"
+          aria-hidden={i >= marqueeKeywords.length}
         >
-          {logo}
+          {keyword}
+          <span class="mx-8 text-gold/30" aria-hidden="true">·</span>
         </span>
       ))
     }

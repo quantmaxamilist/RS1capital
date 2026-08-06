@@ -3,7 +3,6 @@ import { stats } from '../data/site';
 ---
 
 <section
-  id="insights"
   class="relative bg-ivory py-24 lg:py-32 overflow-hidden"
   aria-labelledby="stats-heading"
 >
@@ -18,14 +17,25 @@ import { stats } from '../data/site';
       Strength in Numbers
     </h2>
 
+    <!-- PLACEHOLDER: all statistics below — confirm with client before publishing -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
       {
         stats.map((stat) => (
-          <div class="stat-item reveal-item" data-stat={JSON.stringify(stat)}>
+          <div
+            class="stat-item reveal-item"
+            data-stat={JSON.stringify(stat)}
+            data-placeholder={stat.placeholder ? 'true' : 'false'}
+          >
             <p class="font-body font-normal text-[clamp(2.5rem,5vw,3.5rem)] text-gold leading-none mb-3 stat-number">
-              <span class="stat-prefix">{stat.prefix ?? ''}</span>
-              <span class="stat-value">0</span>
-              <span class="stat-suffix">{stat.suffix ?? ''}</span>
+              {stat.placeholder ? (
+                <span class="stat-display">{stat.displayValue}</span>
+              ) : (
+                <>
+                  <span class="stat-prefix">{stat.prefix ?? ''}</span>
+                  <span class="stat-value">0</span>
+                  <span class="stat-suffix">{stat.suffix ?? ''}</span>
+                </>
+              )}
             </p>
             <p class="font-body text-sm font-medium text-black/70 tracking-wide">{stat.label}</p>
           </div>

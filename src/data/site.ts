@@ -4,157 +4,173 @@ export interface NavLink {
 }
 
 export interface StatItem {
-  value: string;
-  numericTarget: number;
+  label: string;
+  /** PLACEHOLDER stats — confirm with client before publishing */
+  placeholder?: boolean;
+  displayValue?: string;
+  numericTarget?: number;
   prefix?: string;
   suffix?: string;
-  label: string;
 }
 
-export interface PortfolioCompany {
+export interface ServiceItem {
   id: string;
   name: string;
   blurb: string;
-  quote?: string;
-  attribution?: string;
   gradient: string;
   expanded?: boolean;
 }
 
-export interface NetworkMember {
-  name: string;
+export interface AudienceCard {
   title: string;
-  initials: string;
+  description: string;
 }
 
-export interface BuzzItem {
+export interface InsightItem {
   category: string;
   headline: string;
-  company: string;
+  tag: string;
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Fund', href: '#fund' },
-  { label: 'Network', href: '#network' },
-  { label: 'Fellowship', href: '#fellowship' },
-  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Approach', href: '#approach' },
+  { label: 'Case Studies', href: '#case-studies' },
   { label: 'Insights', href: '#insights' },
-  { label: 'Team', href: '#team' },
-  { label: 'Careers', href: '#careers' },
   { label: 'Contact', href: '#contact' },
 ];
 
-export const marqueeLogos: string[] = [
-  'Aerloom',
-  'Northwind',
-  'Cobalt',
-  'Verity',
-  'Measurely',
-  'Attesta',
-  'Qora',
-  'Superset',
-  'Ledgera',
-  'Vireo',
-  'Xenon',
-  'Lumina',
+export const marqueeKeywords: string[] = [
+  'Direct Lending',
+  'Structured Finance',
+  'Investment',
+  'Special Situations',
+  'Business Turnaround',
+  'Restructuring',
+  'Corporate Rescue',
+  'Distressed M&A',
+  'Strategic Advisory',
 ];
 
+/** PLACEHOLDER — confirm all figures with client before publishing */
 export const stats: StatItem[] = [
-  { value: '6', numericTarget: 6, label: 'Funds' },
-  { value: '175+', numericTarget: 175, suffix: '+', label: 'Investments' },
-  { value: '30+', numericTarget: 30, suffix: '+', label: 'Portfolio Exits' },
-  { value: '1,500+', numericTarget: 1500, suffix: '+', label: 'Executives & Corporate Partners' },
-  { value: '$4B+', numericTarget: 4, prefix: '$', suffix: 'B+', label: 'Commercial Value Created' },
-  { value: '$1B+', numericTarget: 1, prefix: '$', suffix: 'B+', label: 'Enterprise Revenue Across the Portfolio' },
+  { label: 'Capital deployed', placeholder: true, displayValue: '£[X]m' },
+  { label: 'Businesses supported', placeholder: true, displayValue: '[X]+' },
+  { label: 'Typical time to terms', placeholder: true, displayValue: '[X] days' },
+  { label: "Years' combined experience", placeholder: true, displayValue: '[X]+' },
+  { label: 'Coverage', placeholder: true, displayValue: 'UK & EU' },
+  { label: 'Confidential', placeholder: true, displayValue: '100%' },
 ];
 
-export const portfolioCompanies: PortfolioCompany[] = [
+export const services: ServiceItem[] = [
   {
-    id: 'aerloom',
-    name: 'Aerloom',
-    blurb: 'Robotics, software and advanced materials that build homes in half the time, at half the cost.',
-    quote: "Northmark backed us before we'd poured our first wall — an essential partner in our growth.",
-    attribution: 'Dana Ellison, Co-Founder & CEO, Aerloom',
-    gradient: 'linear-gradient(135deg, #1a1a1a 0%, #e6c458 40%, #c9a227 70%, #080808 100%)',
+    id: 'direct-lending',
+    name: 'Direct Lending & Structured Finance',
+    blurb: 'Flexible, fast debt facilities for growth, acquisitions and special situations.',
+    gradient: 'linear-gradient(135deg, #1a1a1a 0%, #c9a227 35%, #080808 100%)',
     expanded: true,
   },
   {
-    id: 'verity',
-    name: 'Verity',
-    blurb: 'A single platform to verify and secure every customer authorization.',
-    gradient: 'linear-gradient(145deg, #080808 0%, #111111 35%, #e6c458 65%, #c9a227 100%)',
+    id: 'investment',
+    name: 'Investment & Special Situations',
+    blurb: 'Equity and hybrid capital for complex, time-sensitive opportunities.',
+    gradient: 'linear-gradient(145deg, #080808 0%, #111111 40%, #e6c458 70%, #080808 100%)',
   },
   {
-    id: 'qora',
-    name: 'Qora',
-    blurb: 'Cultural-intelligence AI that turns taste data into business insight.',
-    quote: "Northmark's industry depth, guidance and network have accelerated everything we do.",
-    attribution: 'Alex Moreno, Founder & CEO, Qora',
-    gradient: 'linear-gradient(160deg, #1a1a1a 0%, #c9a227 45%, #f4f0e6 75%, #080808 100%)',
+    id: 'turnaround',
+    name: 'Business Turnaround & Restructuring',
+    blurb: 'Hands-on operational and financial restructuring to stabilise and rebuild.',
+    gradient: 'linear-gradient(160deg, #1a1a1a 0%, #c9a227 50%, #080808 100%)',
   },
   {
-    id: 'vireo',
-    name: 'Vireo',
-    blurb: 'No-code AI that turns raw data into intelligent business decisions.',
-    gradient: 'linear-gradient(120deg, #080808 0%, #c9a227 50%, #1a1a1a 100%)',
+    id: 'rescue',
+    name: 'Corporate Rescue & Distressed Situations',
+    blurb: 'Decisive support for businesses in distress, including accelerated M&A.',
+    gradient: 'linear-gradient(120deg, #080808 0%, #c9a227 45%, #1a1a1a 100%)',
+  },
+  {
+    id: 'advisory',
+    name: 'Strategic & Financial Advisory',
+    blurb: 'Pragmatic advice for owners, lenders and insolvency practitioners.',
+    gradient: 'linear-gradient(135deg, #111111 0%, #e6c458 30%, #080808 100%)',
   },
 ];
 
-export const networkMembers: NetworkMember[] = [
-  { name: 'Marcus Reed', title: 'Senior Advisor & Former Chairman, Harborline', initials: 'MR' },
-  { name: 'Ellen Vasquez', title: 'EVP & COO, Camdyn Residential', initials: 'EV' },
-  { name: 'Tom Brennan', title: 'Vice Chairman, Meridian RE', initials: 'TB' },
-  { name: 'Priya Nair', title: 'Chief Legal Officer & EVP, LeadingEdge', initials: 'PN' },
-  { name: 'Robert Vance', title: 'Founder, Chairman & CEO, Graystone', initials: 'RV' },
-  { name: 'Ken Ash', title: 'Managing Director, Oakfield', initials: 'KA' },
-  { name: 'Laura Kemp', title: 'CEO & President, Avalon Group', initials: 'LK' },
-  { name: 'Mark Costa', title: 'Founder/CEO/Chairman, Essential Mortgage', initials: 'MC' },
+export const audienceCards: AudienceCard[] = [
+  {
+    title: 'Business Owners',
+    description: 'Capital, breathing room and a plan when time is short.',
+  },
+  {
+    title: 'Lenders & Funders',
+    description: 'A pragmatic partner for special situations and distressed exposures.',
+  },
+  {
+    title: 'Insolvency Practitioners',
+    description: 'Speed and certainty on time-critical processes and asset sales.',
+  },
+  {
+    title: 'Professional Advisors',
+    description: 'A responsive capital and turnaround partner for your clients.',
+  },
 ];
 
-export const buzzItems: BuzzItem[] = [
+/** PLACEHOLDER — replace with real posts, or hide section until content exists */
+export const insightItems: InsightItem[] = [
   {
-    category: 'ANNOUNCEMENTS',
-    headline: 'Northmark leads $55M Series B in climate-analytics platform Measurely',
-    company: 'Measurely',
+    category: 'PLACEHOLDER',
+    headline: '[Insight post title — replace with real content]',
+    tag: 'TOPIC',
   },
   {
-    category: 'ANNOUNCEMENTS',
-    headline: 'Portfolio company Verity raises Series C; reaches $1B valuation',
-    company: 'Verity',
+    category: 'PLACEHOLDER',
+    headline: '[Insight post title — replace with real content]',
+    tag: 'TOPIC',
   },
   {
-    category: 'PORTFOLIO NEWS',
-    headline: 'Aerloom awarded major public contract to deliver 3D-printed housing',
-    company: 'Aerloom',
+    category: 'PLACEHOLDER',
+    headline: '[Insight post title — replace with real content]',
+    tag: 'TOPIC',
   },
 ];
 
 export const pillars = [
   {
-    id: 'fund',
-    icon: 'fa-solid fa-chart-line',
-    title: 'Northmark Fund',
-    description:
-      'Multi-stage funds investing across our core verticals and into the broader markets they touch.',
-    link: 'EXPLORE NORTHMARK FUND',
-    href: '#fund',
+    id: 'capital',
+    icon: 'fa-solid fa-coins',
+    title: 'Capital',
+    description: 'Direct lending, structured finance and investment for special situations and distress.',
+    link: 'LEARN MORE',
+    href: '#contact',
   },
   {
-    id: 'fellowship',
-    icon: 'fa-solid fa-graduation-cap',
-    title: 'Northmark Fellowship',
-    description:
-      'A proprietary six-month immersion program giving portfolio founders exclusive access to the Northmark Network and its customers.',
-    link: 'EXPLORE NORTHMARK FELLOWSHIP',
-    href: '#fellowship',
+    id: 'turnaround',
+    icon: 'fa-solid fa-arrows-rotate',
+    title: 'Turnaround',
+    description: 'Hands-on operational turnaround and restructuring to stabilise and rebuild value.',
+    link: 'LEARN MORE',
+    href: '#contact',
   },
   {
-    id: 'network',
-    icon: 'fa-solid fa-people-group',
-    title: 'Northmark Network',
-    description:
-      'A membership of 1,500+ corporate executives — across real estate, finance, insurance and climate — who invest in, mentor and advise the fund and its portfolio companies.',
-    link: 'EXPLORE NORTHMARK NETWORK',
-    href: '#network',
+    id: 'advisory',
+    icon: 'fa-solid fa-handshake',
+    title: 'Advisory',
+    description: 'Strategic and financial advice for owners, lenders and insolvency practitioners.',
+    link: 'LEARN MORE',
+    href: '#contact',
   },
 ] as const;
+
+export const footerLinks = {
+  col1: [
+    { label: 'About', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Approach', href: '#approach' },
+  ],
+  col2: [
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Insights', href: '#insights' },
+    { label: 'Contact', href: '#contact' },
+  ],
+};

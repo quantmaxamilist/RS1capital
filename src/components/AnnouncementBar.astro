@@ -3,7 +3,8 @@
   class="fixed top-0 left-0 right-0 z-[110] bg-charcoal border-b border-white/5 text-center py-2.5 px-10 text-xs font-body font-medium tracking-wide text-mist/90"
 >
   <p class="pr-8">
-    Applications open for the 2026 Northmark Fellowship — apply by September 30
+    Facing a time-critical situation? Speak to us —
+    <a href="mailto:info@rs1.uk" class="text-gold hover:underline">info@rs1.uk</a>
   </p>
   <button
     id="announcement-dismiss"
@@ -20,7 +21,7 @@
   const dismiss = document.getElementById('announcement-dismiss');
 
   if (bar && dismiss) {
-    const stored = sessionStorage.getItem('northmark-announcement-dismissed');
+    const stored = sessionStorage.getItem('rs1-announcement-dismissed');
     if (stored === 'true') {
       bar.classList.add('hidden');
       document.documentElement.style.setProperty('--announcement-height', '0px');
@@ -31,7 +32,7 @@
     dismiss.addEventListener('click', () => {
       bar.classList.add('hidden');
       document.documentElement.style.setProperty('--announcement-height', '0px');
-      sessionStorage.setItem('northmark-announcement-dismissed', 'true');
+      sessionStorage.setItem('rs1-announcement-dismissed', 'true');
       window.dispatchEvent(new Event('announcement-dismissed'));
     });
   }

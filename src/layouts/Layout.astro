@@ -7,30 +7,39 @@ interface Props {
 }
 
 const {
-  title = 'Northmark Ventures | Strategic Venture Capital & Growth Equity',
+  title = 'RS1 Capital Limited | Specialist Investment, Lending & Advisory',
   description =
-    'Northmark Ventures is a strategic venture capital and growth-equity firm backing category-defining companies across AI, robotics, deep tech, climate, data and digital infrastructure.',
+    'RS1 Capital Limited is a specialist investment, lending and advisory firm supporting businesses across the UK and Europe — providing capital, operational turnaround and strategic advice where speed, certainty and pragmatism matter.',
 } = Astro.props;
 
 const schemaLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Northmark Ventures',
+  name: 'RS1 Capital Limited',
   description,
-  url: 'https://northmarkventures.com',
-  logo: 'https://northmarkventures.com/favicon.svg',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '123 Placeholder Ave, Suite 000',
-    addressLocality: 'Chicago',
-    addressRegion: 'IL',
-    postalCode: '60600',
-    addressCountry: 'US',
-  },
-  sameAs: [
-    'https://www.linkedin.com/company/northmark-ventures',
-    'https://www.youtube.com/@northmarkventures',
+  url: 'https://rs1.uk',
+  email: 'info@rs1.uk',
+  logo: 'https://rs1.uk/rs1-logo.png',
+  address: [
+    {
+      '@type': 'PostalAddress',
+      name: 'Spain Office',
+      streetAddress: 'C/ San Fernando 34',
+      addressLocality: 'Mahón',
+      addressRegion: 'Balearic Islands',
+      postalCode: '07702',
+      addressCountry: 'ES',
+    },
+    {
+      '@type': 'PostalAddress',
+      name: 'United Kingdom Office',
+      streetAddress: '160 City Road',
+      addressLocality: 'London',
+      postalCode: 'EC1V 2NX',
+      addressCountry: 'GB',
+    },
   ],
+  sameAs: ['https://www.linkedin.com/company/rs1-capital'],
 };
 ---
 

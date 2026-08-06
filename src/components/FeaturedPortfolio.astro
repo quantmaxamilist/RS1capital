@@ -1,63 +1,59 @@
 ---
-import { portfolioCompanies } from '../data/site';
+import { services } from '../data/site';
 ---
 
-<section id="portfolio" class="bg-white py-24 lg:py-32" aria-labelledby="portfolio-heading">
+<section id="services" class="bg-white py-24 lg:py-32" aria-labelledby="services-heading">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="flex items-start justify-between gap-6 mb-12">
       <h2
-        id="portfolio-heading"
+        id="services-heading"
         class="heading-display text-[clamp(2rem,4vw,3rem)] text-black"
       >
-        Featured Portfolio Companies
+        Services
       </h2>
-      <a href="#portfolio" class="view-all-pill shrink-0">VIEW ALL</a>
     </div>
 
     <div class="portfolio-strip" role="list">
       {
-        portfolioCompanies.map((company) => (
+        services.map((service) => (
           <article
             class="portfolio-card relative bg-black group"
             role="listitem"
             tabindex="0"
-            data-company={company.id}
-            aria-label={`${company.name} portfolio company`}
+            data-service={service.id}
+            aria-label={service.name}
           >
-            <!-- data-note: swap gradient placeholder with real approved image -->
+            <!-- Abstract gold-on-black placeholder panel -->
             <div
               class="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-              style={{ background: company.gradient }}
+              style={{ background: service.gradient }}
               role="img"
-              aria-label={`${company.name} product visualization placeholder`}
+              aria-label={`${service.name} — abstract placeholder panel`}
             ></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-            <!-- Collapsed state: wordmark only -->
+            <!-- Collapsed state: service name -->
             <div class="collapsed-label absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0">
-              <span class="font-display text-2xl font-semibold text-gold/80 tracking-wide [writing-mode:vertical-rl] rotate-180 lg:[writing-mode:horizontal-tb] lg:rotate-0">
-                {company.name}
+              <span class="font-display text-lg lg:text-xl font-semibold text-gold/80 tracking-wide text-center [writing-mode:vertical-rl] rotate-180 lg:[writing-mode:horizontal-tb] lg:rotate-0 leading-snug">
+                {service.name}
               </span>
             </div>
 
             <!-- Expanded content -->
             <div class="expanded-content absolute inset-0 flex flex-col justify-end p-6 lg:p-8 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
-              <p class="font-display text-3xl font-semibold text-mist mb-3">{company.name}</p>
-              {company.quote && (
-                <blockquote class="font-display text-lg italic text-mist/90 mb-3 max-w-lg leading-snug">
-                  "{company.quote}"
-                </blockquote>
-              )}
-              {company.attribution && (
-                <cite class="font-body text-xs text-gold not-italic mb-4 block">{company.attribution}</cite>
-              )}
-              <p class="font-body text-sm text-mist/75 max-w-md leading-relaxed">{company.blurb}</p>
+              <p class="font-display text-2xl lg:text-3xl font-semibold text-mist mb-3">{service.name}</p>
+              <p class="font-body text-sm text-mist/75 max-w-md leading-relaxed">{service.blurb}</p>
             </div>
           </article>
         ))
       }
     </div>
   </div>
+</section>
+
+<!-- PLACEHOLDER: Case Studies content — link nav anchor until real case studies are added -->
+<section id="case-studies" class="sr-only" aria-hidden="true">
+  <p>Case studies — content to be added</p>
 </section>
 
 <style>
@@ -77,6 +73,18 @@ import { portfolioCompanies } from '../data/site';
       opacity: 1;
       pointer-events: auto;
     }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
 

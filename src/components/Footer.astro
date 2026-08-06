@@ -1,18 +1,6 @@
 ---
-import Wordmark from './Wordmark.astro';
-
-const footerLinks = {
-  col1: [
-    { label: 'Fund', href: '#fund' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Careers', href: '#careers' },
-  ],
-  col2: [
-    { label: 'Network', href: '#network' },
-    { label: 'Insights', href: '#insights' },
-    { label: 'Contact', href: '#contact' },
-  ],
-};
+import Logo from './Logo.astro';
+import { footerLinks } from '../data/site';
 ---
 
 <footer id="contact" class="relative bg-black pt-20 pb-8 overflow-hidden" aria-label="Site footer">
@@ -21,15 +9,26 @@ const footerLinks = {
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
     <div class="grid md:grid-cols-3 gap-12 mb-16 items-start">
       <div>
-        <Wordmark />
+        <Logo variant="mark" />
       </div>
 
-      <!-- swap real address when approved -->
-      <address class="font-body text-sm text-mist/70 not-italic leading-relaxed text-center md:text-left">
-        Northmark Ventures<br />
-        123 Placeholder Ave, Suite 000<br />
-        Chicago, IL 60600
-      </address>
+      <div class="font-body text-sm text-mist/70 leading-relaxed text-center md:text-left space-y-6">
+        <p>
+          <a href="mailto:info@rs1.uk" class="text-gold hover:underline">info@rs1.uk</a>
+        </p>
+        <address class="not-italic">
+          <strong class="text-mist block mb-1">Spain</strong>
+          RS1 Capital Limited<br />
+          C/ San Fernando 34<br />
+          07702 Mahón, Balearic Islands
+        </address>
+        <address class="not-italic">
+          <strong class="text-mist block mb-1">United Kingdom</strong>
+          RS1 Capital Limited<br />
+          160 City Road<br />
+          London, EC1V 2NX
+        </address>
+      </div>
 
       <nav class="grid grid-cols-2 gap-x-8 gap-y-3 justify-items-end md:justify-items-start md:ml-auto" aria-label="Footer navigation">
         <div class="flex flex-col gap-3">
@@ -55,8 +54,9 @@ const footerLinks = {
 
     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
       <div class="flex items-center gap-4">
+        <!-- PLACEHOLDER: swap # for real LinkedIn URL -->
         <a
-          href="https://www.linkedin.com/company/northmark-ventures"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
           class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
@@ -64,19 +64,10 @@ const footerLinks = {
         >
           <i class="fa-brands fa-linkedin-in text-lg" aria-hidden="true"></i>
         </a>
-        <a
-          href="https://www.youtube.com/@northmarkventures"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
-          aria-label="YouTube"
-        >
-          <i class="fa-brands fa-youtube text-lg" aria-hidden="true"></i>
-        </a>
       </div>
 
       <p class="font-body text-xs text-mist/40">
-        © 2026 Northmark Ventures. All rights reserved.
+        © 2026 RS1 Capital Limited. All rights reserved.
       </p>
 
       <a href="#privacy" class="font-body text-xs text-mist/50 hover:text-gold transition-colors">
@@ -86,7 +77,6 @@ const footerLinks = {
   </div>
 </footer>
 
-<section id="careers" class="sr-only" aria-hidden="true"></section>
 <section id="privacy" class="sr-only" aria-hidden="true"></section>
 
 <style>
