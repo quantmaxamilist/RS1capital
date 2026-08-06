@@ -4,15 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#080808',
-        surface: '#0f0f0f',
-        card: '#161616',
-        cream: '#f0ede8',
+        ink: '#071429',
+        navy: '#0a1c38',
+        'navy-2': '#0e2547',
+        aqua: '#22e0b7',
+        'aqua-2': '#1fb6d6',
+        sky: '#a9def5',
+        paper: '#f6f8fb',
+        mist: '#eef4f8',
       },
       fontFamily: {
-        bebas: ['"Bebas Neue"', 'sans-serif'],
-        dm: ['"DM Sans"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        body: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
       },
     },
   },

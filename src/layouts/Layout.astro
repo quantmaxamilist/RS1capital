@@ -1,134 +1,66 @@
 ﻿---
-interface Props { title?: string; description?: string; }
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
 const {
-  title = "J.L. Hughes Carpentry | Carpenter Haverfordwest | Kitchen Fitting Pembrokeshire",
-  description = "J.L. Hughes Carpentry — kitchen fitting, 1st & 2nd fix, bespoke staircases, joinery and roofing in Haverfordwest, Pembrokeshire. Call 07495 471877 for a free quote.",
+  title = 'Northmark Ventures | Strategic Venture Capital & Growth Equity',
+  description =
+    'Northmark Ventures is a strategic venture capital and growth-equity firm backing category-defining companies across AI, robotics, deep tech, climate, data and digital infrastructure.',
 } = Astro.props;
 
 const schemaLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "J.L. Hughes Carpentry",
-  description:
-    "J.L. Hughes Carpentry undertakes all aspects of carpentry work including kitchen fitting, 1st & 2nd fix, bespoke staircase & joinery installation, traditional cut & trussed roofing, CIS contracting, domestic & commercial works, based in Pembrokeshire.",
-  telephone: "+447495471877",
-  email: "jlhughescarpentry@hotmail.com",
-  url: "https://jlhughescarpentry.co.uk",
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Northmark Ventures',
+  description,
+  url: 'https://northmarkventures.com',
+  logo: 'https://northmarkventures.com/favicon.svg',
   address: {
-    "@type": "PostalAddress",
-    addressLocality: "Haverfordwest",
-    addressRegion: "Pembrokeshire",
-    addressCountry: "GB",
+    '@type': 'PostalAddress',
+    streetAddress: '123 Placeholder Ave, Suite 000',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    postalCode: '60600',
+    addressCountry: 'US',
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 51.801,
-    longitude: -4.969,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "08:00",
-      closes: "16:30",
-    },
+  sameAs: [
+    'https://www.linkedin.com/company/northmark-ventures',
+    'https://www.youtube.com/@northmarkventures',
   ],
-  areaServed: "Pembrokeshire",
-  priceRange: "££",
-  sameAs: ["https://www.facebook.com/J.L.HughesCarpentry/"],
 };
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script type="application/ld+json" set:html={JSON.stringify(schemaLd)} />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #02184a;
-      color: #ffffff;
-      font-family: 'DM Sans', sans-serif;
-      overflow-x: hidden;
-      cursor: none;
-    }
-    ::selection { background: rgba(247,2,0,0.25); }
-    #cursor-dot {
-      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-      background: #f70200; border-radius: 50%;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-    }
-    #cursor-ring {
-      position: fixed; top: 0; left: 0; width: 36px; height: 36px;
-      border: 0.5px solid rgba(247,2,0,0.5); border-radius: 50%;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%,-50%);
-      transition: width 0.3s, height 0.3s;
-    }
-    body.hovered #cursor-ring { width: 52px; height: 52px; }
-    @media (hover: none) and (pointer: coarse) {
-      #cursor-dot, #cursor-ring { display: none !important; }
-      body { cursor: auto !important; }
-    }
-    ::-webkit-scrollbar { width: 2px; }
-    ::-webkit-scrollbar-track { background: #02184a; }
-    ::-webkit-scrollbar-thumb { background: rgba(247,2,0,0.35); }
-    @keyframes brickReveal { 0% { clip-path: inset(100% 0 0 0); } 100% { clip-path: inset(0% 0 0 0); } }
-    @keyframes slowZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.0); } }
-    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(2,24,74,0.95);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: min(1100px, 100%);
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 1px;
-    }
-  </style>
-</head>
-<body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-  <slot />
-  <script>
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
-    });
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function tick() {
-      if (dot) { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }
-      rx = lerp(rx, mx, 0.09); ry = lerp(ry, my, 0.09);
-      if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
-      requestAnimationFrame(tick);
-    }
-    tick();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaLd)} />
+  </head>
+  <body class="bg-ink text-paper antialiased">
+    <slot />
+  </body>
 </html>

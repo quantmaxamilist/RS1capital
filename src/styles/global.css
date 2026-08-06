@@ -1,11 +1,262 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #02184a;
-  --color-navy-light: #032060;
-  --color-red: #f70200;
-  --color-cream: #ffffff;
-  --font-display: "Bebas Neue", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --color-ink: #071429;
+  --color-navy: #0a1c38;
+  --color-navy-2: #0e2547;
+  --color-aqua: #22e0b7;
+  --color-aqua-2: #1fb6d6;
+  --color-sky: #a9def5;
+  --color-paper: #f6f8fb;
+  --color-mist: #eef4f8;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(34, 224, 183, 0.25);
+  color: var(--color-paper);
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-aqua);
+  outline-offset: 3px;
+}
+
+/* Eyebrow utility */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-aqua);
+}
+
+/* Display heading */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* EXPLORE link */
+.explore-link {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-aqua);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.explore-link:hover {
+  opacity: 0.75;
+}
+
+/* Diagonal hatch decoration */
+.hatch-corner {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(34, 224, 183, 0.15) 4px,
+    rgba(34, 224, 183, 0.15) 5px
+  );
+}
+
+/* Aqua gradient glow */
+.glow-aqua {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    rgba(34, 224, 183, 0.35) 0%,
+    rgba(31, 182, 214, 0.15) 40%,
+    transparent 70%
+  );
+}
+
+.glow-aqua-bottom-left {
+  background: radial-gradient(
+    ellipse 60% 50% at 0% 100%,
+    rgba(34, 224, 183, 0.25) 0%,
+    rgba(31, 182, 214, 0.1) 50%,
+    transparent 70%
+  );
+}
+
+/* Marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: show final animation states */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .hero-eyebrow,
+  .hero-line,
+  .hero-sub,
+  .hero-glow,
+  .reveal-item,
+  .triangle-path,
+  .pillar-item,
+  .buzz-card,
+  .stat-item {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* View all pill */
+.view-all-pill {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  border: 1px solid var(--color-navy);
+  border-radius: 9999px;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.view-all-pill:hover {
+  background: var(--color-navy);
+  color: var(--color-paper);
+}
+
+/* Portfolio accordion strip */
+.portfolio-strip {
+  display: flex;
+  gap: 0.5rem;
+  min-height: 28rem;
+}
+
+@media (max-width: 767px) {
+  .portfolio-strip {
+    flex-direction: column;
+    min-height: auto;
+  }
+}
+
+.portfolio-card {
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex-grow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.portfolio-strip:has(.portfolio-card:hover) .portfolio-card,
+.portfolio-strip:has(.portfolio-card:focus-within) .portfolio-card {
+  flex-grow: 1;
+}
+
+.portfolio-strip:has(.portfolio-card:hover) .portfolio-card:hover,
+.portfolio-strip:has(.portfolio-card:focus-within) .portfolio-card:focus-within {
+  flex-grow: 4;
+}
+
+@media (max-width: 767px) {
+  .portfolio-card,
+  .portfolio-strip:has(.portfolio-card:hover) .portfolio-card,
+  .portfolio-strip:has(.portfolio-card:focus-within) .portfolio-card,
+  .portfolio-strip:has(.portfolio-card:hover) .portfolio-card:hover,
+  .portfolio-strip:has(.portfolio-card:focus-within) .portfolio-card:focus-within {
+    flex-grow: 1 !important;
+    min-height: 20rem;
+  }
+}
+
+/* Network drag rail */
+.network-rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  padding-bottom: 0.5rem;
+}
+
+.network-rail:active {
+  cursor: grabbing;
+}
+
+.network-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.network-rail > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Buzz card hover lift */
+.buzz-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buzz-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(7, 20, 41, 0.12);
 }

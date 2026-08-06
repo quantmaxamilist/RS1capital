@@ -1,0 +1,48 @@
+<section id="fund" class="relative bg-navy py-24 lg:py-32 overflow-hidden" aria-labelledby="growth-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <div class="reveal-item">
+      <p class="eyebrow mb-4">FOCUSED ON GROWTH</p>
+      <h2 id="growth-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-paper mb-6">
+        Deep industry partnerships, applied expertise.
+      </h2>
+      <p class="font-body text-paper/70 text-base leading-relaxed">
+        We back bold, multi-vertical technology companies with strong teams and ambitious
+        mandates — businesses with application across the multi-trillion-dollar markets of real
+        estate, insurance, finance and climate, and which create value for our strategic partners
+        and the investors within them.
+      </p>
+    </div>
+
+    <div class="relative reveal-item" id="growth-media">
+      <div
+        class="absolute -top-3 -right-3 w-20 h-20 hatch-corner rounded-sm z-10 pointer-events-none"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gradient-to-br from-navy-2 via-ink to-aqua-2/30"
+        role="img"
+        aria-label="Abstract particle gradient representing innovation and growth"
+      >
+        <div class="absolute inset-0 opacity-60" aria-hidden="true">
+          {
+            Array.from({ length: 24 }).map((_, i) => (
+              <span
+                class="absolute rounded-full bg-aqua/30"
+                style={{
+                  width: `${4 + (i % 5) * 3}px`,
+                  height: `${4 + (i % 5) * 3}px`,
+                  top: `${(i * 17) % 90}%`,
+                  left: `${(i * 23) % 90}%`,
+                }}
+              />
+            ))
+          }
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-aqua/10"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>

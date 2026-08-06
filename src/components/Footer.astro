@@ -1,0 +1,104 @@
+---
+import Wordmark from './Wordmark.astro';
+
+const footerLinks = {
+  col1: [
+    { label: 'Fund', href: '#fund' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Careers', href: '#careers' },
+  ],
+  col2: [
+    { label: 'Network', href: '#network' },
+    { label: 'Insights', href: '#insights' },
+    { label: 'Contact', href: '#contact' },
+  ],
+};
+---
+
+<footer id="contact" class="relative bg-ink pt-20 pb-8 overflow-hidden" aria-label="Site footer">
+  <div class="absolute bottom-0 left-0 w-1/2 h-1/2 glow-aqua-bottom-left pointer-events-none opacity-50" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="grid md:grid-cols-3 gap-12 mb-16 items-start">
+      <div>
+        <Wordmark />
+      </div>
+
+      <!-- swap real address when approved -->
+      <address class="font-body text-sm text-paper/70 not-italic leading-relaxed text-center md:text-left">
+        Northmark Ventures<br />
+        123 Placeholder Ave, Suite 000<br />
+        Chicago, IL 60600
+      </address>
+
+      <nav class="grid grid-cols-2 gap-x-8 gap-y-3 justify-items-end md:justify-items-start md:ml-auto" aria-label="Footer navigation">
+        <div class="flex flex-col gap-3">
+          {
+            footerLinks.col1.map((link) => (
+              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-paper/60 hover:text-aqua transition-colors uppercase">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+        <div class="flex flex-col gap-3">
+          {
+            footerLinks.col2.map((link) => (
+              <a href={link.href} class="font-body text-xs font-medium tracking-wide text-paper/60 hover:text-aqua transition-colors uppercase">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.linkedin.com/company/northmark-ventures"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-paper/50 hover:text-aqua transition-colors w-10 h-10 flex items-center justify-center"
+          aria-label="LinkedIn"
+        >
+          <i class="fa-brands fa-linkedin-in text-lg" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.youtube.com/@northmarkventures"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-paper/50 hover:text-aqua transition-colors w-10 h-10 flex items-center justify-center"
+          aria-label="YouTube"
+        >
+          <i class="fa-brands fa-youtube text-lg" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <p class="font-body text-xs text-paper/40">
+        © 2026 Northmark Ventures. All rights reserved.
+      </p>
+
+      <a href="#privacy" class="font-body text-xs text-paper/50 hover:text-aqua transition-colors">
+        Privacy Policy
+      </a>
+    </div>
+  </div>
+</footer>
+
+<section id="careers" class="sr-only" aria-hidden="true"></section>
+<section id="privacy" class="sr-only" aria-hidden="true"></section>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

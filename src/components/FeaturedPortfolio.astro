@@ -1,0 +1,93 @@
+---
+import { portfolioCompanies } from '../data/site';
+---
+
+<section id="portfolio" class="bg-white py-24 lg:py-32" aria-labelledby="portfolio-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-start justify-between gap-6 mb-12">
+      <h2
+        id="portfolio-heading"
+        class="heading-display text-[clamp(2rem,4vw,3rem)] text-navy"
+      >
+        Featured Portfolio Companies
+      </h2>
+      <a href="#portfolio" class="view-all-pill shrink-0">VIEW ALL</a>
+    </div>
+
+    <div class="portfolio-strip" role="list">
+      {
+        portfolioCompanies.map((company) => (
+          <article
+            class="portfolio-card relative bg-navy group"
+            role="listitem"
+            tabindex="0"
+            data-company={company.id}
+            aria-label={`${company.name} portfolio company`}
+          >
+            <!-- data-note: swap gradient placeholder with real approved image -->
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+              style={{ background: company.gradient }}
+              role="img"
+              aria-label={`${company.name} product visualization placeholder`}
+            ></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"></div>
+
+            <!-- Collapsed state: wordmark only -->
+            <div class="collapsed-label absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0">
+              <span class="font-display text-2xl font-semibold text-aqua/80 tracking-wide [writing-mode:vertical-rl] rotate-180 lg:[writing-mode:horizontal-tb] lg:rotate-0">
+                {company.name}
+              </span>
+            </div>
+
+            <!-- Expanded content -->
+            <div class="expanded-content absolute inset-0 flex flex-col justify-end p-6 lg:p-8 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+              <p class="font-display text-3xl font-semibold text-paper mb-3">{company.name}</p>
+              {company.quote && (
+                <blockquote class="font-display text-lg italic text-paper/90 mb-3 max-w-lg leading-snug">
+                  "{company.quote}"
+                </blockquote>
+              )}
+              {company.attribution && (
+                <cite class="font-body text-xs text-aqua not-italic mb-4 block">{company.attribution}</cite>
+              )}
+              <p class="font-body text-sm text-paper/75 max-w-md leading-relaxed">{company.blurb}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-card:first-child .collapsed-label {
+    opacity: 0;
+  }
+  .portfolio-card:first-child .expanded-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 767px) {
+    .portfolio-card .collapsed-label {
+      opacity: 0;
+    }
+    .portfolio-card .expanded-content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.portfolio-card').forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.portfolio-card').forEach((c) => {
+        if (c !== card) {
+          c.classList.add('peer-collapsed');
+        }
+      });
+    });
+  });
+</script>
