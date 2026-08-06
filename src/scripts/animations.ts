@@ -27,21 +27,68 @@ function initLenis(): Lenis | null {
   return lenis;
 }
 
+function initHeroGlowMotion(): void {
+  const container = document.getElementById('hero-glow');
+  const blob1 = document.querySelector<HTMLElement>('.hero-glow-blob-1');
+  const blob2 = document.querySelector<HTMLElement>('.hero-glow-blob-2');
+
+  if (!container || !blob1 || !blob2) return;
+
+  if (prefersReducedMotion) {
+    gsap.set(container, { opacity: 0.42 });
+    gsap.set([blob1, blob2], { opacity: 0.38, scale: 1, xPercent: 0, yPercent: 0 });
+    return;
+  }
+
+  gsap.set([blob1, blob2], { opacity: 0.34, scale: 1, xPercent: 0, yPercent: 0 });
+
+  gsap.fromTo(
+    blob1,
+    { xPercent: -7, yPercent: -3, scale: 1, opacity: 0.3 },
+    {
+      xPercent: 7,
+      yPercent: 3,
+      scale: 1.15,
+      opacity: 0.48,
+      duration: 12,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+    },
+  );
+
+  gsap.fromTo(
+    blob2,
+    { xPercent: 8, yPercent: 2, scale: 1.05, opacity: 0.32 },
+    {
+      xPercent: -6,
+      yPercent: -3,
+      scale: 1.12,
+      opacity: 0.46,
+      duration: 15,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      delay: 1.5,
+    },
+  );
+}
+
 function initHeroAnimations(): void {
   if (prefersReducedMotion) {
-    gsap.set(['.hero-eyebrow', '.hero-line', '.hero-sub', '.hero-glow'], {
+    gsap.set(['.hero-eyebrow', '.hero-line', '.hero-sub'], {
       opacity: 1,
       y: 0,
-      scale: 1,
       letterSpacing: '0.2em',
     });
+    initHeroGlowMotion();
     return;
   }
 
   gsap.set('.hero-eyebrow', { opacity: 0, letterSpacing: '0.5em' });
   gsap.set('.hero-line', { opacity: 0, y: 40 });
   gsap.set('.hero-sub', { opacity: 0, y: 20 });
-  gsap.set('.hero-glow', { opacity: 0, scale: 0.75 });
+  gsap.set('#hero-glow', { opacity: 0 });
 
   const tl = gsap.timeline({ delay: 0.2 });
   tl.to('.hero-eyebrow', {
@@ -56,7 +103,8 @@ function initHeroAnimations(): void {
       '-=0.6',
     )
     .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-    .to('.hero-glow', { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' }, '-=0.8');
+    .to('#hero-glow', { opacity: 1, duration: 1.4, ease: 'power2.out' }, '-=0.8')
+    .add(initHeroGlowMotion, '-=0.6');
 }
 
 function initScrollReveals(): void {

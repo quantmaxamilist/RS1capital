@@ -10,7 +10,7 @@ import { navLinks } from '../data/site';
 >
   <nav
     id="main-nav"
-    class="flex items-center justify-between px-6 lg:px-10 h-[4.5rem] transition-all duration-300"
+    class="flex items-center justify-between px-6 lg:px-10 h-20 md:h-[5.5rem] transition-all duration-300"
     aria-label="Main navigation"
   >
     <Logo class="shrink-0" />
@@ -67,8 +67,22 @@ import { navLinks } from '../data/site';
   #main-nav.scrolled {
     background: rgba(8, 8, 8, 0.92);
     backdrop-filter: blur(12px);
-    height: 3.75rem;
+    height: 4rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  #main-nav.scrolled :global(img) {
+    height: 2.75rem;
+  }
+
+  @media (min-width: 768px) {
+    #main-nav.scrolled {
+      height: 4.5rem;
+    }
+
+    #main-nav.scrolled :global(img) {
+      height: 3.25rem;
+    }
   }
 
   #mobile-menu.open {
