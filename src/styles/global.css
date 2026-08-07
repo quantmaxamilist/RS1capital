@@ -141,6 +141,55 @@ button:focus-visible {
   animation-play-state: paused;
 }
 
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* soft gold atmosphere rising from the bottom-centre, stays in the lower third */
+.hero-glow__bloom {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 130%;
+  height: 48%;
+  background: radial-gradient(
+    ellipse 55% 100% at 50% 100%,
+    rgba(255, 244, 214, 0.55) 0%,
+    rgba(201, 162, 39, 0.32) 32%,
+    rgba(201, 162, 39, 0) 72%
+  );
+  filter: blur(40px);
+  opacity: 0.85;
+  will-change: opacity, transform;
+}
+
+/* the planet: a huge dark disc whose glowing TOP EDGE is the horizon rim (curved, never a straight line) */
+.hero-glow__rim {
+  position: absolute;
+  left: 50%;
+  top: 74%;
+  transform: translateX(-50%);
+  width: 320%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #080808;
+  box-shadow:
+    0 -1px 0 1px rgba(255, 244, 214, 0.95),
+    0 -14px 50px 2px rgba(201, 162, 39, 0.5);
+}
+
+@media (max-width: 640px) {
+  .hero-glow__rim {
+    top: 80%;
+    width: 420%;
+  }
+}
+
 /* Reduced motion: show final animation states */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
@@ -150,8 +199,6 @@ button:focus-visible {
   .hero-eyebrow,
   .hero-line,
   .hero-sub,
-  .hero-glow,
-  .hero-horizon,
   .reveal-item,
   .triangle-path,
   .pillar-item,
@@ -159,6 +206,10 @@ button:focus-visible {
     opacity: 1 !important;
     transform: none !important;
     stroke-dashoffset: 0 !important;
+  }
+
+  .hero-glow__bloom {
+    will-change: auto;
   }
 }
 

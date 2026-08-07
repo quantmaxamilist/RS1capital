@@ -27,95 +27,34 @@ function initLenis(): Lenis | null {
   return lenis;
 }
 
-function initHeroGlowMotion(): void {
-  const container = document.getElementById('hero-glow');
-  const bloomPrimary = document.querySelector<HTMLElement>('.hero-horizon-bloom-primary');
-  const bloomSecondary = document.querySelector<HTMLElement>('.hero-horizon-bloom-secondary');
-  const rimHot = document.querySelector<HTMLElement>('.hero-horizon-rim-hot');
-  const planetDisc = document.querySelector<HTMLElement>('.hero-planet-disc');
+function initHeroGlowEnhancement(): void {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  if (!container || !bloomPrimary || !bloomSecondary || !rimHot || !planetDisc) return;
-
-  if (prefersReducedMotion) {
-    gsap.set(container, { opacity: 1 });
-    gsap.set(bloomPrimary, { opacity: 0.58, scaleY: 1.06 });
-    gsap.set(bloomSecondary, { opacity: 0.28, scaleY: 1.03 });
-    gsap.set(rimHot, { xPercent: 0 });
-    gsap.set(planetDisc, { '--rim-glow': 0.92 });
-    return;
-  }
-
-  gsap.set(bloomPrimary, { opacity: 0.4, scaleY: 1, transformOrigin: '50% 100%' });
-  gsap.set(bloomSecondary, { opacity: 0.24, scaleY: 1.02, transformOrigin: '50% 100%' });
-  gsap.set(rimHot, { xPercent: -14, transformOrigin: '50% 100%' });
-  gsap.set(planetDisc, { '--rim-glow': 0.85 });
-
-  gsap.fromTo(
-    bloomPrimary,
-    { opacity: 0.4, scaleY: 1 },
-    {
-      opacity: 0.8,
-      scaleY: 1.12,
-      duration: 5,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1,
-    },
-  );
-
-  gsap.fromTo(
-    bloomSecondary,
-    { opacity: 0.2, scaleY: 1.02 },
-    {
-      opacity: 0.38,
-      scaleY: 1.08,
-      duration: 11,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1,
-      delay: 1.5,
-    },
-  );
-
-  gsap.fromTo(
-    rimHot,
-    { xPercent: -14 },
-    {
-      xPercent: 14,
-      duration: 9,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1,
-      delay: 0.5,
-    },
-  );
-
-  gsap.fromTo(
-    planetDisc,
-    { '--rim-glow': 0.85 },
-    {
-      '--rim-glow': 1,
-      duration: 3,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1,
-    },
-  );
+  gsap.set('.hero-glow__bloom', { xPercent: -50, transformOrigin: '50% 100%' });
+  gsap.to('.hero-glow__bloom', {
+    opacity: 0.6,
+    scaleY: 1.12,
+    transformOrigin: '50% 100%',
+    duration: 5,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1,
+  });
 }
 
 function initHeroAnimations(): void {
+  initHeroGlowEnhancement();
+
   if (prefersReducedMotion) {
     gsap.set('.hero-eyebrow', { opacity: 1, letterSpacing: '0.2em' });
     gsap.set(['.hero-line', '.hero-sub'], { opacity: 1, y: 0 });
     gsap.set('.hero-line', { letterSpacing: '-0.015em' });
-    initHeroGlowMotion();
     return;
   }
 
   gsap.set('.hero-eyebrow', { opacity: 0, letterSpacing: '0.5em' });
   gsap.set('.hero-line', { opacity: 0, y: 40, letterSpacing: '-0.015em' });
   gsap.set('.hero-sub', { opacity: 0, y: 20 });
-  gsap.set('#hero-glow', { opacity: 0 });
 
   const tl = gsap.timeline({ delay: 0.2 });
   tl.to('.hero-eyebrow', {
@@ -129,9 +68,7 @@ function initHeroAnimations(): void {
       { opacity: 1, y: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out' },
       '-=0.6',
     )
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-    .to('#hero-glow', { opacity: 1, duration: 1.4, ease: 'power2.out' }, '-=0.8')
-    .add(initHeroGlowMotion, '-=0.6');
+    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5');
 }
 
 function initScrollReveals(): void {

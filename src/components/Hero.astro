@@ -3,24 +3,9 @@
   class="relative min-h-svh flex items-center justify-center overflow-hidden bg-gradient-to-b from-panel to-black pt-[calc(var(--announcement-height,40px)+5rem)] md:pt-[calc(var(--announcement-height,40px)+5.5rem)]"
   aria-label="Hero"
 >
-  <div
-    id="hero-glow"
-    class="hero-horizon absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-0"
-    aria-hidden="true"
-  >
-    <div class="hero-horizon-stage">
-      <div class="hero-horizon-underglow"></div>
-      <div class="hero-horizon-bloom-anchor hero-horizon-bloom-secondary-anchor">
-        <div class="hero-horizon-bloom hero-horizon-bloom-secondary"></div>
-      </div>
-      <div class="hero-horizon-bloom-anchor hero-horizon-bloom-primary-anchor">
-        <div class="hero-horizon-bloom hero-horizon-bloom-primary"></div>
-      </div>
-      <div class="hero-horizon-rim-anchor">
-        <div class="hero-horizon-rim-hot"></div>
-      </div>
-      <div class="hero-planet-disc"></div>
-    </div>
+  <div class="hero-glow" aria-hidden="true">
+    <div class="hero-glow__bloom"></div>
+    <div class="hero-glow__rim"></div>
   </div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center py-20">
@@ -50,125 +35,5 @@
 <style>
   .hero-headline {
     letter-spacing: -0.015em;
-  }
-
-  .hero-horizon {
-    -webkit-mask-image: linear-gradient(to top, black 0%, black 24%, transparent 38%);
-    mask-image: linear-gradient(to top, black 0%, black 24%, transparent 38%);
-  }
-
-  .hero-horizon-stage {
-    position: absolute;
-    left: 50%;
-    bottom: -234vw;
-    width: 260vw;
-    aspect-ratio: 1;
-    transform: translateX(-50%);
-  }
-
-  .hero-horizon-underglow {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 72%;
-    height: 26%;
-    transform: translate(-50%, -34%);
-    background: radial-gradient(
-      ellipse 58% 88% at 50% 100%,
-      rgba(255, 244, 214, 0.3) 0%,
-      rgba(201, 162, 39, 0.22) 42%,
-      transparent 72%
-    );
-    filter: blur(26px);
-  }
-
-  .hero-horizon-bloom-anchor {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    pointer-events: none;
-  }
-
-  .hero-horizon-bloom-secondary-anchor {
-    transform: translate(-50%, -44%);
-  }
-
-  .hero-horizon-bloom-primary-anchor {
-    transform: translate(-50%, -54%);
-  }
-
-  .hero-horizon-bloom {
-    will-change: transform, opacity;
-    transform-origin: 50% 100%;
-  }
-
-  .hero-horizon-bloom-primary {
-    width: min(155vw, 980px);
-    height: min(38vh, 300px);
-    background: radial-gradient(
-      ellipse 54% 72% at 50% 100%,
-      rgba(255, 244, 214, 0.58) 0%,
-      rgba(255, 244, 214, 0.32) 12%,
-      rgba(201, 162, 39, 0.34) 28%,
-      rgba(201, 162, 39, 0.12) 48%,
-      transparent 68%
-    );
-    filter: blur(34px);
-  }
-
-  .hero-horizon-bloom-secondary {
-    width: min(130vw, 820px);
-    height: min(28vh, 220px);
-    background: radial-gradient(
-      ellipse 62% 75% at 50% 100%,
-      rgba(201, 162, 39, 0.26) 0%,
-      rgba(201, 162, 39, 0.1) 40%,
-      transparent 68%
-    );
-    filter: blur(48px);
-  }
-
-  .hero-horizon-rim-anchor {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -52%);
-    pointer-events: none;
-  }
-
-  .hero-horizon-rim-hot {
-    width: min(36vw, 300px);
-    height: min(3vw, 24px);
-    background: radial-gradient(
-      ellipse 100% 100% at 50% 100%,
-      rgba(255, 244, 214, 0.98) 0%,
-      rgba(255, 244, 214, 0.48) 32%,
-      rgba(201, 162, 39, 0.18) 55%,
-      transparent 78%
-    );
-    filter: blur(5px);
-    will-change: transform;
-    transform-origin: 50% 100%;
-  }
-
-  .hero-planet-disc {
-    --rim-glow: 1;
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: #080808;
-    box-shadow:
-      0 -1px 0 rgba(255, 244, 214, calc(0.96 * var(--rim-glow))),
-      0 -2px 8px rgba(255, 244, 214, calc(0.68 * var(--rim-glow))),
-      0 -8px 22px rgba(255, 244, 214, calc(0.34 * var(--rim-glow))),
-      0 -18px 48px rgba(201, 162, 39, calc(0.42 * var(--rim-glow))),
-      0 -36px 80px rgba(201, 162, 39, calc(0.16 * var(--rim-glow)));
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-horizon-bloom,
-    .hero-horizon-rim-hot {
-      will-change: auto;
-    }
   }
 </style>
