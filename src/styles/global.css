@@ -200,6 +200,13 @@ button:focus-visible {
   animation-play-state: paused;
 }
 
+/* Cursor-follow glow sections */
+[data-glow-follow] {
+  --gx: 0.5;
+  --gy: 0.5;
+  --g-intensity: 0;
+}
+
 .hero-glow {
   position: absolute;
   inset: 0;
@@ -208,45 +215,97 @@ button:focus-visible {
   pointer-events: none;
 }
 
-/* soft gold atmosphere rising from the bottom-centre, stays in the lower third */
-.hero-glow__bloom {
+.hero-glow__bloom-track {
   position: absolute;
   left: 50%;
   bottom: 0;
-  transform: translateX(-50%);
   width: 130%;
   height: 48%;
+  transform: translateX(calc(-50% + (var(--gx) - 0.5) * 85vw))
+    translateY(calc((var(--gy) - 0.5) * 6vh));
+  will-change: transform;
+}
+
+/* soft gold atmosphere rising from the bottom-centre, stays in the lower third */
+.hero-glow__bloom {
+  position: absolute;
+  inset: 0;
   background: radial-gradient(
     ellipse 55% 100% at 50% 100%,
-    rgba(255, 244, 214, 0.55) 0%,
-    rgba(201, 162, 39, 0.32) 32%,
+    rgba(255, 244, 214, calc(0.55 + var(--g-intensity) * 0.12)) 0%,
+    rgba(201, 162, 39, calc(0.32 + var(--g-intensity) * 0.1)) 32%,
     rgba(201, 162, 39, 0) 72%
   );
   filter: blur(40px);
-  opacity: 0.85;
+  opacity: calc(0.85 + var(--g-intensity) * 0.1);
   will-change: opacity, transform;
+}
+
+.hero-glow__rim-track {
+  position: absolute;
+  left: 50%;
+  top: 74%;
+  width: 320%;
+  transform: translateX(calc(-50% + (var(--gx) - 0.5) * 65vw));
+  will-change: transform;
 }
 
 /* the planet: a huge dark disc whose glowing TOP EDGE is the horizon rim (curved, never a straight line) */
 .hero-glow__rim {
-  position: absolute;
-  left: 50%;
-  top: 74%;
-  transform: translateX(-50%);
-  width: 320%;
+  position: relative;
+  width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: #080808;
   box-shadow:
-    0 -1px 0 1px rgba(255, 244, 214, 0.95),
-    0 -14px 50px 2px rgba(201, 162, 39, 0.5);
+    0 -1px 0 1px rgba(255, 244, 214, calc(0.95 + var(--g-intensity) * 0.05)),
+    0 -14px 50px 2px rgba(201, 162, 39, calc(0.5 + var(--g-intensity) * 0.18));
 }
 
 @media (max-width: 640px) {
-  .hero-glow__rim {
+  .hero-glow__rim-track {
     top: 80%;
     width: 420%;
   }
+}
+
+/* Approach — soft radial glow behind triangle */
+.approach-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.approach-glow__spot {
+  position: absolute;
+  left: calc(var(--gx) * 100%);
+  top: calc(42% + (var(--gy) - 0.5) * 10%);
+  width: min(90vw, 36rem);
+  height: min(70vw, 28rem);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    rgba(255, 244, 214, calc(0.18 + var(--g-intensity) * 0.14)) 0%,
+    rgba(201, 162, 39, calc(0.1 + var(--g-intensity) * 0.12)) 38%,
+    transparent 72%
+  );
+  filter: blur(52px);
+  opacity: calc(0.65 + var(--g-intensity) * 0.25);
+  will-change: left, top, opacity;
+}
+
+/* Contact — bottom glow follows pointer X */
+.contact-glow {
+  background: radial-gradient(
+    ellipse 75% 55% at calc(var(--gx) * 100%) 100%,
+    rgba(201, 162, 39, calc(0.38 + var(--g-intensity) * 0.14)) 0%,
+    rgba(230, 196, 88, calc(0.18 + var(--g-intensity) * 0.08)) 42%,
+    transparent 72%
+  );
+  opacity: calc(0.4 + var(--g-intensity) * 0.18);
+  will-change: opacity;
 }
 
 /* Reduced motion: show final animation states */

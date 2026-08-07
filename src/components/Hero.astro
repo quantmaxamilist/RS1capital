@@ -2,10 +2,15 @@
   id="hero"
   class="relative min-h-svh flex items-center justify-center overflow-hidden bg-gradient-to-b from-panel to-black pt-[calc(var(--announcement-height,40px)+3.5rem)] md:pt-[calc(var(--announcement-height,40px)+4rem)]"
   aria-label="Hero"
+  data-glow-follow
 >
   <div class="hero-glow" aria-hidden="true">
-    <div class="hero-glow__bloom"></div>
-    <div class="hero-glow__rim"></div>
+    <div class="hero-glow__bloom-track">
+      <div class="hero-glow__bloom"></div>
+    </div>
+    <div class="hero-glow__rim-track">
+      <div class="hero-glow__rim"></div>
+    </div>
   </div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center py-12 -translate-y-[6vh] md:-translate-y-[8vh]">

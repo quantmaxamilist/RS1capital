@@ -2,8 +2,12 @@
 import { pillars } from '../data/site';
 ---
 
-<section id="approach" class="relative bg-black py-24 lg:py-32 overflow-hidden" aria-labelledby="approach-heading">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+<section id="approach" class="relative bg-black py-24 lg:py-32 overflow-hidden" aria-labelledby="approach-heading" data-glow-follow>
+  <div class="approach-glow" aria-hidden="true">
+    <div class="approach-glow__spot"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-[1]">
     <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20" data-reveal>
       <h2 id="approach-heading" class="heading-display text-[clamp(2rem,4vw,3.25rem)] text-mist mb-6">
         The RS1 Approach

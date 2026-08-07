@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import type { StatItem } from '../data/site';
+import { initCursorGlowFollow } from './cursor-glow';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -131,7 +132,7 @@ function initLenis(): Lenis | null {
 function initHeroGlowEnhancement(): void {
   if (prefersReducedMotion) return;
 
-  gsap.set('.hero-glow__bloom', { xPercent: -50, transformOrigin: '50% 100%' });
+  gsap.set('.hero-glow__bloom', { transformOrigin: '50% 100%' });
   gsap.to('.hero-glow__bloom', {
     opacity: 0.6,
     scaleY: 1.12,
@@ -373,6 +374,7 @@ export function initAnimations(): void {
   initTriangleAnimation();
   initMediaAmbient();
   initStatCounters();
+  initCursorGlowFollow();
 
   refreshScrollTriggers();
   scrollToHash(true);
