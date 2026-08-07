@@ -32,30 +32,30 @@ function initHeroGlowMotion(): void {
   const bloomPrimary = document.querySelector<HTMLElement>('.hero-horizon-bloom-primary');
   const bloomSecondary = document.querySelector<HTMLElement>('.hero-horizon-bloom-secondary');
   const rimHot = document.querySelector<HTMLElement>('.hero-horizon-rim-hot');
-  const rimShimmer = document.querySelector<HTMLElement>('.hero-planet-rim-shimmer');
+  const planetDisc = document.querySelector<HTMLElement>('.hero-planet-disc');
 
-  if (!container || !bloomPrimary || !bloomSecondary || !rimHot || !rimShimmer) return;
+  if (!container || !bloomPrimary || !bloomSecondary || !rimHot || !planetDisc) return;
 
   if (prefersReducedMotion) {
     gsap.set(container, { opacity: 1 });
-    gsap.set(bloomPrimary, { opacity: 0.62, scaleY: 1.08 });
-    gsap.set(bloomSecondary, { opacity: 0.32, scaleY: 1.04 });
-    gsap.set(rimHot, { xPercent: 0, opacity: 0.9 });
-    gsap.set(rimShimmer, { opacity: 0.92 });
+    gsap.set(bloomPrimary, { opacity: 0.58, scaleY: 1.06 });
+    gsap.set(bloomSecondary, { opacity: 0.28, scaleY: 1.03 });
+    gsap.set(rimHot, { xPercent: 0 });
+    gsap.set(planetDisc, { '--rim-glow': 0.92 });
     return;
   }
 
   gsap.set(bloomPrimary, { opacity: 0.4, scaleY: 1, transformOrigin: '50% 100%' });
-  gsap.set(bloomSecondary, { opacity: 0.28, scaleY: 1.02, transformOrigin: '50% 100%' });
-  gsap.set(rimHot, { xPercent: -14, opacity: 0.92, transformOrigin: '50% 100%' });
-  gsap.set(rimShimmer, { opacity: 0.85 });
+  gsap.set(bloomSecondary, { opacity: 0.24, scaleY: 1.02, transformOrigin: '50% 100%' });
+  gsap.set(rimHot, { xPercent: -14, transformOrigin: '50% 100%' });
+  gsap.set(planetDisc, { '--rim-glow': 0.85 });
 
   gsap.fromTo(
     bloomPrimary,
     { opacity: 0.4, scaleY: 1 },
     {
-      opacity: 0.85,
-      scaleY: 1.15,
+      opacity: 0.8,
+      scaleY: 1.12,
       duration: 5,
       ease: 'sine.inOut',
       yoyo: true,
@@ -65,10 +65,10 @@ function initHeroGlowMotion(): void {
 
   gsap.fromTo(
     bloomSecondary,
-    { opacity: 0.22, scaleY: 1.02 },
+    { opacity: 0.2, scaleY: 1.02 },
     {
-      opacity: 0.42,
-      scaleY: 1.1,
+      opacity: 0.38,
+      scaleY: 1.08,
       duration: 11,
       ease: 'sine.inOut',
       yoyo: true,
@@ -91,10 +91,10 @@ function initHeroGlowMotion(): void {
   );
 
   gsap.fromTo(
-    rimShimmer,
-    { opacity: 0.85 },
+    planetDisc,
+    { '--rim-glow': 0.85 },
     {
-      opacity: 1,
+      '--rim-glow': 1,
       duration: 3,
       ease: 'sine.inOut',
       yoyo: true,
