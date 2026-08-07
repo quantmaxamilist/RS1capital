@@ -264,10 +264,14 @@ button:focus-visible {
     0 -18px 68px 3px rgba(201, 162, 39, calc(0.5 + var(--g-intensity) * 0.26));
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .hero-glow__rim-track {
-    top: 80%;
+    top: 92%;
     width: 420%;
+  }
+
+  .hero-glow__bloom-track {
+    height: 36%;
   }
 }
 
