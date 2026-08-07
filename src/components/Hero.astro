@@ -5,11 +5,22 @@
 >
   <div
     id="hero-glow"
-    class="hero-glow absolute inset-x-0 bottom-0 h-[48%] pointer-events-none z-0 opacity-0 overflow-hidden"
+    class="hero-horizon absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-0"
     aria-hidden="true"
   >
-    <div class="hero-glow-blob hero-glow-blob-1"></div>
-    <div class="hero-glow-blob hero-glow-blob-2"></div>
+    <div class="hero-horizon-stage">
+      <div class="hero-horizon-underglow"></div>
+      <div class="hero-horizon-bloom-anchor hero-horizon-bloom-secondary-anchor">
+        <div class="hero-horizon-bloom hero-horizon-bloom-secondary"></div>
+      </div>
+      <div class="hero-horizon-bloom-anchor hero-horizon-bloom-primary-anchor">
+        <div class="hero-horizon-bloom hero-horizon-bloom-primary"></div>
+      </div>
+      <div class="hero-horizon-rim-anchor">
+        <div class="hero-horizon-rim-hot"></div>
+      </div>
+      <div class="hero-planet-disc"></div>
+    </div>
   </div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center py-20">
@@ -41,42 +52,118 @@
     letter-spacing: -0.015em;
   }
 
-  .hero-glow-blob {
+  .hero-horizon-stage {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    will-change: transform, opacity;
-    transform: translate3d(0, 0, 0);
+    left: 50%;
+    bottom: -234vw;
+    width: 260vw;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
   }
 
-  .hero-glow-blob-1 {
-    width: min(85vw, 720px);
-    height: min(55vh, 420px);
-    left: 5%;
-    bottom: -18%;
+  /* Light source beneath the planet */
+  .hero-horizon-underglow {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 70%;
+    height: 28%;
+    transform: translate(-50%, -35%);
     background: radial-gradient(
-      ellipse at center,
-      rgba(201, 162, 39, 0.55) 0%,
-      rgba(201, 162, 39, 0.2) 45%,
+      ellipse 55% 90% at 50% 100%,
+      rgba(255, 233, 176, 0.35) 0%,
+      rgba(201, 162, 39, 0.28) 40%,
       transparent 72%
     );
+    filter: blur(28px);
   }
 
-  .hero-glow-blob-2 {
-    width: min(80vw, 680px);
-    height: min(50vh, 380px);
-    right: 0%;
-    bottom: -22%;
+  /* Atmosphere bloom — soft sky glow above the rim */
+  .hero-horizon-bloom-anchor {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    pointer-events: none;
+  }
+
+  .hero-horizon-bloom-secondary-anchor {
+    transform: translate(-50%, -48%);
+  }
+
+  .hero-horizon-bloom-primary-anchor {
+    transform: translate(-50%, -58%);
+  }
+
+  .hero-horizon-bloom {
+    will-change: transform, opacity;
+    transform-origin: 50% 100%;
+  }
+
+  .hero-horizon-bloom-primary {
+    width: min(140vw, 960px);
+    height: min(52vh, 420px);
     background: radial-gradient(
-      ellipse at center,
-      rgba(230, 196, 88, 0.45) 0%,
-      rgba(201, 162, 39, 0.18) 50%,
+      ellipse 52% 72% at 50% 100%,
+      rgba(255, 233, 176, 0.72) 0%,
+      rgba(230, 196, 88, 0.45) 22%,
+      rgba(201, 162, 39, 0.28) 48%,
       transparent 74%
     );
+    filter: blur(36px);
+  }
+
+  .hero-horizon-bloom-secondary {
+    width: min(110vw, 780px);
+    height: min(38vh, 320px);
+    background: radial-gradient(
+      ellipse 60% 80% at 50% 100%,
+      rgba(201, 162, 39, 0.38) 0%,
+      rgba(201, 162, 39, 0.14) 45%,
+      transparent 72%
+    );
+    filter: blur(52px);
+  }
+
+  /* Drifting hot highlight along the crest */
+  .hero-horizon-rim-anchor {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -52%);
+    pointer-events: none;
+  }
+
+  .hero-horizon-rim-hot {
+    width: min(34vw, 280px);
+    height: min(3vw, 24px);
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 100%,
+      rgba(255, 233, 176, 0.95) 0%,
+      rgba(255, 233, 176, 0.45) 35%,
+      transparent 72%
+    );
+    filter: blur(6px);
+    will-change: transform, opacity;
+    transform-origin: 50% 100%;
+  }
+
+  /* Planet body — black disc occluding glow below the rim */
+  .hero-planet-disc {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #080808;
+    box-shadow:
+      0 -1px 0 rgba(255, 233, 176, 0.92),
+      0 -2px 6px rgba(255, 233, 176, 0.75),
+      0 -6px 20px rgba(255, 233, 176, 0.45),
+      0 -14px 48px rgba(201, 162, 39, 0.55),
+      0 -32px 90px rgba(201, 162, 39, 0.28);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-glow-blob {
+    .hero-horizon-bloom,
+    .hero-horizon-rim-hot {
       will-change: auto;
     }
   }

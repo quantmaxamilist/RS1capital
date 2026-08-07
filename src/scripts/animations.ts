@@ -29,28 +29,31 @@ function initLenis(): Lenis | null {
 
 function initHeroGlowMotion(): void {
   const container = document.getElementById('hero-glow');
-  const blob1 = document.querySelector<HTMLElement>('.hero-glow-blob-1');
-  const blob2 = document.querySelector<HTMLElement>('.hero-glow-blob-2');
+  const bloomPrimary = document.querySelector<HTMLElement>('.hero-horizon-bloom-primary');
+  const bloomSecondary = document.querySelector<HTMLElement>('.hero-horizon-bloom-secondary');
+  const rimHot = document.querySelector<HTMLElement>('.hero-horizon-rim-hot');
 
-  if (!container || !blob1 || !blob2) return;
+  if (!container || !bloomPrimary || !bloomSecondary || !rimHot) return;
 
   if (prefersReducedMotion) {
-    gsap.set(container, { opacity: 0.42 });
-    gsap.set([blob1, blob2], { opacity: 0.38, scale: 1, xPercent: 0, yPercent: 0 });
+    gsap.set(container, { opacity: 1 });
+    gsap.set(bloomPrimary, { opacity: 0.68, scale: 1.06 });
+    gsap.set(bloomSecondary, { opacity: 0.38, scale: 1.04 });
+    gsap.set(rimHot, { xPercent: 0, opacity: 0.85 });
     return;
   }
 
-  gsap.set([blob1, blob2], { opacity: 0.34, scale: 1, xPercent: 0, yPercent: 0 });
+  gsap.set(bloomPrimary, { opacity: 0.45, scale: 1, transformOrigin: '50% 100%' });
+  gsap.set(bloomSecondary, { opacity: 0.22, scale: 1, transformOrigin: '50% 100%' });
+  gsap.set(rimHot, { xPercent: -12, opacity: 0.9, transformOrigin: '50% 100%' });
 
   gsap.fromTo(
-    blob1,
-    { xPercent: -7, yPercent: -3, scale: 1, opacity: 0.3 },
+    bloomPrimary,
+    { opacity: 0.45, scale: 1 },
     {
-      xPercent: 7,
-      yPercent: 3,
-      scale: 1.15,
-      opacity: 0.48,
-      duration: 9,
+      opacity: 0.9,
+      scale: 1.12,
+      duration: 6,
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1,
@@ -58,18 +61,30 @@ function initHeroGlowMotion(): void {
   );
 
   gsap.fromTo(
-    blob2,
-    { xPercent: 8, yPercent: 2, scale: 1.05, opacity: 0.32 },
+    bloomSecondary,
+    { opacity: 0.2, scale: 1.02 },
     {
-      xPercent: -6,
-      yPercent: -3,
-      scale: 1.12,
-      opacity: 0.46,
-      duration: 14,
+      opacity: 0.48,
+      scale: 1.1,
+      duration: 11,
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1,
-      delay: 1.5,
+      delay: 2,
+    },
+  );
+
+  gsap.fromTo(
+    rimHot,
+    { xPercent: -14, opacity: 0.75 },
+    {
+      xPercent: 14,
+      opacity: 1,
+      duration: 9,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      delay: 0.5,
     },
   );
 }
