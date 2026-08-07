@@ -210,6 +210,7 @@ function initScrollReveals(): void {
 
 function initTriangleAnimation(): void {
   const triangle = document.getElementById('triangle-shape');
+  const highlight = document.getElementById('triangle-highlight');
   const vertices = document.querySelectorAll<SVGElement>('.vertex-glow');
   const vertexRadials = document.querySelectorAll<SVGElement>('.vertex-radial');
   const arcs = document.querySelectorAll<SVGElement>('.triangle-arc');
@@ -218,16 +219,35 @@ function initTriangleAnimation(): void {
 
   if (prefersReducedMotion) return;
 
-  gsap.from(triangle, {
-    strokeDashoffset: 800,
-    duration: 1.8,
-    ease: 'power2.inOut',
+  const triangleTl = gsap.timeline({
     scrollTrigger: {
       trigger: '#triangle-wrap',
       start: REVEAL_START,
       toggleActions: 'play none none none',
     },
   });
+
+  triangleTl.from(triangle, {
+    strokeDashoffset: 800,
+    duration: 1.8,
+    ease: 'power2.inOut',
+  });
+
+  if (highlight) {
+    triangleTl
+      .to(highlight, { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+      .fromTo(
+        highlight,
+        { strokeDashoffset: 0 },
+        {
+          strokeDashoffset: -800,
+          duration: 10,
+          ease: 'none',
+          repeat: -1,
+        },
+        '-=0.2',
+      );
+  }
 
   vertices.forEach((vertex, i) => {
     gsap.fromTo(

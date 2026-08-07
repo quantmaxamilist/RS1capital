@@ -63,6 +63,13 @@ import PillarIcon from './PillarIcon.astro';
               <stop offset="55%" stop-color="rgba(201, 162, 39, 0.1)" />
               <stop offset="100%" stop-color="rgba(201, 162, 39, 0)" />
             </radialGradient>
+            <filter id="triangle-highlight-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
             <filter id="vertex-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="blur" />
               <feMerge>
@@ -136,6 +143,19 @@ import PillarIcon from './PillarIcon.astro';
             stroke-dasharray="800"
             stroke-dashoffset="0"
           />
+          <polygon
+            id="triangle-highlight"
+            class="triangle-highlight"
+            points="160,30 30,250 290,250"
+            fill="none"
+            stroke="#e6c458"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-dasharray="52 748"
+            stroke-dashoffset="0"
+            filter="url(#triangle-highlight-glow)"
+            opacity="0"
+          />
           <circle cx="160" cy="30" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
           <circle cx="30" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
           <circle cx="290" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
@@ -179,5 +199,9 @@ import PillarIcon from './PillarIcon.astro';
 
   .vertex-radial {
     opacity: 0.55;
+  }
+
+  .triangle-highlight {
+    pointer-events: none;
   }
 </style>

@@ -82,6 +82,8 @@ button:focus-visible {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.1;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
 }
 
 /* EXPLORE link */
@@ -319,6 +321,7 @@ button:focus-visible {
   .hero-sub,
   [data-reveal],
   .triangle-path,
+  .triangle-highlight,
   .pillar-item,
   .stat-item,
   .vertex-glow {
@@ -329,6 +332,10 @@ button:focus-visible {
 
   .hero-glow__bloom {
     will-change: auto;
+  }
+
+  .triangle-highlight {
+    display: none;
   }
 
   .hover-lift-card:hover,
