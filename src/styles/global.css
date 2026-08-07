@@ -21,6 +21,8 @@
 
 html {
   scroll-behavior: auto;
+  background-color: #080808;
+  scroll-padding-top: calc(var(--announcement-height, 40px) + 5.5rem);
 }
 
 html.lenis,
@@ -42,15 +44,15 @@ html.lenis body {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-black);
+  background-color: #080808;
   color: var(--color-mist);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  min-height: 100%;
 }
 
-/* Anchor targets — offset for fixed header + announcement bar */
-section[id] {
-  scroll-margin-top: calc(var(--announcement-height, 40px) + 5.5rem);
+main {
+  background-color: #080808;
 }
 
 ::selection {
