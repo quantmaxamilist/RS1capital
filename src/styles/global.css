@@ -219,8 +219,8 @@ button:focus-visible {
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 130%;
-  height: 48%;
+  width: 150%;
+  height: 52%;
   transform: translateX(calc(-50% + (var(--gx) - 0.5) * 85vw))
     translateY(calc((var(--gy) - 0.5) * 6vh));
   will-change: transform;
@@ -231,13 +231,13 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    ellipse 55% 100% at 50% 100%,
-    rgba(255, 244, 214, calc(0.55 + var(--g-intensity) * 0.12)) 0%,
-    rgba(201, 162, 39, calc(0.32 + var(--g-intensity) * 0.1)) 32%,
-    rgba(201, 162, 39, 0) 72%
+    ellipse 62% 100% at 50% 100%,
+    rgba(255, 244, 214, calc(0.55 + var(--g-intensity) * 0.17)) 0%,
+    rgba(201, 162, 39, calc(0.32 + var(--g-intensity) * 0.145)) 32%,
+    rgba(201, 162, 39, 0) 78%
   );
-  filter: blur(40px);
-  opacity: calc(0.85 + var(--g-intensity) * 0.1);
+  filter: blur(52px);
+  opacity: calc(0.85 + var(--g-intensity) * 0.14);
   will-change: opacity, transform;
 }
 
@@ -258,8 +258,8 @@ button:focus-visible {
   border-radius: 50%;
   background: #080808;
   box-shadow:
-    0 -1px 0 1px rgba(255, 244, 214, calc(0.95 + var(--g-intensity) * 0.05)),
-    0 -14px 50px 2px rgba(201, 162, 39, calc(0.5 + var(--g-intensity) * 0.18));
+    0 -1px 0 1px rgba(255, 244, 214, calc(0.95 + var(--g-intensity) * 0.07)),
+    0 -18px 68px 3px rgba(201, 162, 39, calc(0.5 + var(--g-intensity) * 0.26));
 }
 
 @media (max-width: 640px) {
@@ -282,29 +282,29 @@ button:focus-visible {
   position: absolute;
   left: calc(var(--gx) * 100%);
   top: calc(42% + (var(--gy) - 0.5) * 10%);
-  width: min(90vw, 36rem);
-  height: min(70vw, 28rem);
+  width: min(105vw, 42rem);
+  height: min(82vw, 34rem);
   transform: translate(-50%, -50%);
   background: radial-gradient(
-    ellipse 50% 50% at 50% 50%,
-    rgba(255, 244, 214, calc(0.18 + var(--g-intensity) * 0.14)) 0%,
-    rgba(201, 162, 39, calc(0.1 + var(--g-intensity) * 0.12)) 38%,
-    transparent 72%
+    ellipse 58% 58% at 50% 50%,
+    rgba(255, 244, 214, calc(0.18 + var(--g-intensity) * 0.2)) 0%,
+    rgba(201, 162, 39, calc(0.1 + var(--g-intensity) * 0.17)) 38%,
+    transparent 78%
   );
-  filter: blur(52px);
-  opacity: calc(0.65 + var(--g-intensity) * 0.25);
+  filter: blur(68px);
+  opacity: calc(0.65 + var(--g-intensity) * 0.36);
   will-change: left, top, opacity;
 }
 
 /* Contact — bottom glow follows pointer X */
 .contact-glow {
   background: radial-gradient(
-    ellipse 75% 55% at calc(var(--gx) * 100%) 100%,
-    rgba(201, 162, 39, calc(0.38 + var(--g-intensity) * 0.14)) 0%,
-    rgba(230, 196, 88, calc(0.18 + var(--g-intensity) * 0.08)) 42%,
-    transparent 72%
+    ellipse 90% 65% at calc(var(--gx) * 100%) 100%,
+    rgba(201, 162, 39, calc(0.38 + var(--g-intensity) * 0.2)) 0%,
+    rgba(230, 196, 88, calc(0.18 + var(--g-intensity) * 0.115)) 42%,
+    transparent 78%
   );
-  opacity: calc(0.4 + var(--g-intensity) * 0.18);
+  opacity: calc(0.4 + var(--g-intensity) * 0.26);
   will-change: opacity;
 }
 
