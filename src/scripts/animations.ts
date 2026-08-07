@@ -5,6 +5,13 @@ import type { StatItem } from '../data/site';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const REVEAL_DEFAULTS = {
+  y: 28,
+  opacity: 0,
+  duration: 0.8,
+  ease: 'power2.out' as const,
+};
+
 function formatNumber(n: number): string {
   return n.toLocaleString('en-US');
 }
@@ -12,8 +19,10 @@ function formatNumber(n: number): string {
 function initLenis(): Lenis | null {
   if (prefersReducedMotion) return null;
 
+  document.documentElement.classList.add('lenis', 'lenis-smooth');
+
   const lenis = new Lenis({
-    lerp: 0.08,
+    lerp: 0.09,
     smoothWheel: true,
   });
 
@@ -28,7 +37,7 @@ function initLenis(): Lenis | null {
 }
 
 function initHeroGlowEnhancement(): void {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (prefersReducedMotion) return;
 
   gsap.set('.hero-glow__bloom', { xPercent: -50, transformOrigin: '50% 100%' });
   gsap.to('.hero-glow__bloom', {
@@ -44,124 +53,137 @@ function initHeroGlowEnhancement(): void {
 
 function initHeroAnimations(): void {
   initHeroGlowEnhancement();
+  if (prefersReducedMotion) return;
 
-  if (prefersReducedMotion) {
-    gsap.set('.hero-eyebrow', { opacity: 1, letterSpacing: '0.2em' });
-    gsap.set(['.hero-line', '.hero-sub'], { opacity: 1, y: 0 });
-    gsap.set('.hero-line', { letterSpacing: '-0.015em' });
-    return;
-  }
-
-  gsap.set('.hero-eyebrow', { opacity: 0, letterSpacing: '0.5em' });
-  gsap.set('.hero-line', { opacity: 0, y: 40, letterSpacing: '-0.015em' });
-  gsap.set('.hero-sub', { opacity: 0, y: 20 });
-
-  const tl = gsap.timeline({ delay: 0.2 });
-  tl.to('.hero-eyebrow', {
-    opacity: 1,
-    letterSpacing: '0.2em',
-    duration: 1,
-    ease: 'power3.out',
+  const tl = gsap.timeline({ delay: 0.15 });
+  tl.from('.hero-eyebrow', {
+    opacity: 0,
+    y: 20,
+    duration: 0.7,
+    ease: 'power2.out',
   })
-    .to(
+    .from(
       '.hero-line',
-      { opacity: 1, y: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out' },
-      '-=0.6',
+      { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out', stagger: 0.12 },
+      '-=0.45',
     )
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5');
+    .from('.hero-sub', { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out' }, '-=0.4');
 }
 
 function initScrollReveals(): void {
   if (prefersReducedMotion) return;
 
-  gsap.utils.toArray<HTMLElement>('.reveal-item').forEach((el) => {
-    gsap.fromTo(
-      el,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.9,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      },
-    );
-  });
+  document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
+    const items = group.querySelectorAll<HTMLElement>('[data-reveal]');
+    if (!items.length) return;
 
-  const growthMedia = document.getElementById('growth-media');
-  if (growthMedia) {
-    gsap.to(growthMedia, {
-      y: -30,
-      ease: 'none',
+    const stagger = parseFloat(group.dataset.revealStagger ?? '0.09');
+
+    gsap.from(items, {
+      ...REVEAL_DEFAULTS,
+      stagger,
       scrollTrigger: {
-        trigger: growthMedia,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
+        trigger: group,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
       },
     });
-  }
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+    if (el.closest('[data-reveal-group]')) return;
+
+    gsap.from(el, {
+      ...REVEAL_DEFAULTS,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
 }
 
 function initTriangleAnimation(): void {
   const triangle = document.getElementById('triangle-shape');
   const vertices = document.querySelectorAll<SVGElement>('.vertex-glow');
-  const pillars = document.querySelectorAll<HTMLElement>('.pillar-item');
+  const arcs = document.querySelectorAll<SVGElement>('.triangle-arc');
 
   if (!triangle) return;
 
-  if (prefersReducedMotion) {
-    triangle.style.strokeDashoffset = '0';
-    vertices.forEach((v) => v.classList.remove('opacity-0'));
-    pillars.forEach((p) => {
-      p.style.opacity = '1';
-    });
-    return;
-  }
+  if (prefersReducedMotion) return;
 
-  gsap.to(triangle, {
-    strokeDashoffset: 0,
+  gsap.from(triangle, {
+    strokeDashoffset: 800,
     duration: 1.8,
     ease: 'power2.inOut',
     scrollTrigger: {
       trigger: '#triangle-wrap',
-      start: 'top 75%',
+      start: 'top 85%',
       toggleActions: 'play none none none',
     },
   });
 
-  gsap.to(vertices, {
-    opacity: 1,
-    duration: 0.6,
-    stagger: 0.2,
-    delay: 1,
-    scrollTrigger: {
-      trigger: '#triangle-wrap',
-      start: 'top 75%',
-      toggleActions: 'play none none none',
-    },
-  });
-
-  gsap.fromTo(
-    pillars,
-    { opacity: 0, y: 24 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#triangle-wrap',
-        start: 'top 70%',
-        toggleActions: 'play none none none',
+  vertices.forEach((vertex, i) => {
+    gsap.fromTo(
+      vertex,
+      { opacity: 0.4 },
+      {
+        opacity: 0.8,
+        duration: 4 + i,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: i * 0.8,
       },
-    },
-  );
+    );
+  });
+
+  if (arcs.length) {
+    gsap.to(arcs[0], {
+      rotation: 8,
+      transformOrigin: '50% 50%',
+      duration: 12,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+    });
+    if (arcs[1]) {
+      gsap.to(arcs[1], {
+        rotation: -6,
+        transformOrigin: '50% 50%',
+        duration: 16,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: 2,
+      });
+    }
+  }
+}
+
+function initMediaAmbient(): void {
+  const panel = document.querySelector<HTMLElement>('.growth-media-inner');
+  if (!panel || prefersReducedMotion) return;
+
+  gsap.to(panel, {
+    scale: 1.025,
+    duration: 10,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1,
+  });
+
+  const overlay = document.querySelector<HTMLElement>('.growth-media-overlay');
+  if (overlay) {
+    gsap.to(overlay, {
+      opacity: 0.85,
+      duration: 8,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+    });
+  }
 }
 
 function animateStatCounter(
@@ -180,13 +202,12 @@ function animateStatCounter(
     duration,
     ease: 'power2.out',
     scrollTrigger: {
-      trigger: el,
+      trigger: '#stats-grid',
       start: 'top 85%',
       toggleActions: 'play none none none',
     },
     onUpdate: () => {
-      const rounded = Math.round(obj.val);
-      valueEl.textContent = formatNumber(rounded);
+      valueEl.textContent = formatNumber(Math.round(obj.val));
     },
   });
 }
@@ -209,7 +230,7 @@ function initStatCounters(): void {
         }
         return;
       }
-      animateStatCounter(el, stat, 2);
+      animateStatCounter(el, stat, 1.2);
     } catch {
       /* ignore malformed data */
     }
@@ -223,6 +244,7 @@ export function initAnimations(): void {
   initHeroAnimations();
   initScrollReveals();
   initTriangleAnimation();
+  initMediaAmbient();
   initStatCounters();
 }
 

@@ -4,7 +4,7 @@ import { pillars } from '../data/site';
 
 <section id="approach" class="relative bg-black py-24 lg:py-32 overflow-hidden" aria-labelledby="approach-heading">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20 reveal-item">
+    <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20" data-reveal>
       <h2 id="approach-heading" class="heading-display text-[clamp(2rem,4vw,3.25rem)] text-mist mb-6">
         The RS1 Approach
       </h2>
@@ -14,9 +14,13 @@ import { pillars } from '../data/site';
       </p>
     </div>
 
-    <div class="relative flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-8">
+    <div
+      class="relative flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-8"
+      data-reveal-group
+      data-reveal-stagger="0.1"
+    >
       <!-- Left pillar -->
-      <div class="pillar-item order-2 lg:order-1 lg:w-64 opacity-0 lg:text-right">
+      <div class="pillar-item order-2 lg:order-1 lg:w-64 lg:text-right" data-reveal>
         <div class="flex lg:flex-row-reverse items-start gap-4">
           <i class={pillars[0].icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
           <div>
@@ -28,7 +32,7 @@ import { pillars } from '../data/site';
       </div>
 
       <!-- Triangle SVG -->
-      <div class="order-1 lg:order-2 shrink-0 w-full max-w-sm lg:max-w-md px-4" id="triangle-wrap">
+      <div class="order-1 lg:order-2 shrink-0 w-full max-w-sm lg:max-w-md px-4" id="triangle-wrap" data-reveal>
         <svg
           viewBox="0 0 320 280"
           class="w-full h-auto"
@@ -44,6 +48,26 @@ import { pillars } from '../data/site';
               </feMerge>
             </filter>
           </defs>
+          <ellipse
+            class="triangle-arc"
+            cx="160"
+            cy="140"
+            rx="120"
+            ry="90"
+            fill="none"
+            stroke="rgba(201, 162, 39, 0.07)"
+            stroke-width="1"
+          />
+          <ellipse
+            class="triangle-arc triangle-arc--alt"
+            cx="160"
+            cy="150"
+            rx="90"
+            ry="70"
+            fill="none"
+            stroke="rgba(230, 196, 88, 0.05)"
+            stroke-width="1"
+          />
           <polygon
             id="triangle-shape"
             class="triangle-path"
@@ -52,11 +76,11 @@ import { pillars } from '../data/site';
             stroke="#c9a227"
             stroke-width="1"
             stroke-dasharray="800"
-            stroke-dashoffset="800"
+            stroke-dashoffset="0"
           />
-          <circle cx="160" cy="30" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow opacity-0" />
-          <circle cx="30" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow opacity-0" />
-          <circle cx="290" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow opacity-0" />
+          <circle cx="160" cy="30" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
+          <circle cx="30" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
+          <circle cx="290" cy="250" r="5" fill="#c9a227" filter="url(#vertex-glow)" class="vertex-glow" />
           <text x="160" y="18" text-anchor="middle" fill="#f0ece0" class="font-body" style="font-size:8px;letter-spacing:0.15em;">CAPITAL</text>
           <text x="30" y="272" text-anchor="middle" fill="#f0ece0" class="font-body" style="font-size:7px;letter-spacing:0.12em;">TURNAROUND</text>
           <text x="290" y="272" text-anchor="middle" fill="#f0ece0" class="font-body" style="font-size:7px;letter-spacing:0.12em;">ADVISORY</text>
@@ -67,7 +91,7 @@ import { pillars } from '../data/site';
       <div class="order-3 lg:hidden w-full space-y-10">
         {
           pillars.slice(1).map((pillar) => (
-            <div class="pillar-item opacity-0">
+            <div class="pillar-item" data-reveal>
               <div class="flex items-start gap-4">
                 <i class={pillar.icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
                 <div>
@@ -85,7 +109,7 @@ import { pillars } from '../data/site';
       <div class="hidden lg:flex lg:flex-col lg:order-3 lg:w-64 gap-16">
         {
           pillars.slice(1).map((pillar) => (
-            <div class="pillar-item opacity-0">
+            <div class="pillar-item" data-reveal>
               <div class="flex items-start gap-4">
                 <i class={pillar.icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
                 <div>
@@ -107,5 +131,9 @@ import { pillars } from '../data/site';
     #triangle-wrap {
       max-width: 240px;
     }
+  }
+
+  .vertex-glow {
+    opacity: 0.6;
   }
 </style>

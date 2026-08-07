@@ -5,17 +5,18 @@ import { audienceCards } from '../data/site';
 <section id="who-we-work-with" class="bg-white py-24 lg:py-32" aria-labelledby="audience-heading">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="flex items-start justify-between gap-6 mb-12">
-      <h2 id="audience-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-black">
+      <h2 id="audience-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-black" data-reveal>
         Who We Work With
       </h2>
     </div>
 
-    <div id="network-rail" class="network-rail mb-10" role="list">
+    <div id="network-rail" class="network-rail mb-10" role="list" data-reveal-group data-reveal-stagger="0.1">
       {
         audienceCards.map((card) => (
           <article
-            class="w-64 md:w-72 rounded-xl overflow-hidden relative bg-black shrink-0 p-8 flex flex-col justify-end min-h-[16rem]"
+            class="hover-lift-card w-64 md:w-72 rounded-xl overflow-hidden relative bg-black shrink-0 p-8 flex flex-col justify-end min-h-[16rem]"
             role="listitem"
+            data-reveal
           >
             <div class="absolute inset-0 bg-gradient-to-br from-charcoal via-black to-gold/10" aria-hidden="true"></div>
             <div class="absolute top-6 right-6 w-12 h-12 hatch-corner rounded-sm opacity-60" aria-hidden="true"></div>
@@ -28,10 +29,10 @@ import { audienceCards } from '../data/site';
       }
     </div>
 
-    <div class="text-center">
+    <div class="text-center" data-reveal>
       <a
         href="#contact"
-        class="inline-block font-body text-xs font-semibold tracking-[0.16em] uppercase bg-gold text-black px-8 py-3.5 rounded-sm hover:bg-gold-2 transition-colors"
+        class="btn-gold inline-block font-body text-xs font-semibold tracking-[0.16em] uppercase bg-gold text-black px-8 py-3.5 rounded-sm"
       >
         Get in touch
       </a>

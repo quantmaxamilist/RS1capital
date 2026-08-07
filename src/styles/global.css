@@ -86,11 +86,63 @@ button:focus-visible {
   text-transform: uppercase;
   color: var(--color-gold);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: color 0.3s ease, background-size 0.3s ease, opacity 0.3s ease;
 }
 
 .explore-link:hover {
-  opacity: 0.75;
+  color: var(--color-gold-2);
+  background-size: 100% 1px;
+}
+
+/* Nav + footer text links */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: color 0.3s ease, background-size 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-gold);
+  background-size: 100% 1px;
+}
+
+/* Gold CTA button */
+.btn-gold {
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.25);
+}
+
+/* Card hover lift */
+.hover-lift-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift-card:hover,
+.hover-lift-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* About media panel — visible ambient drift base */
+.growth-media-inner {
+  will-change: transform;
+}
+
+.growth-media-overlay {
+  opacity: 1;
 }
 
 /* Diagonal hatch decoration */
@@ -199,10 +251,11 @@ button:focus-visible {
   .hero-eyebrow,
   .hero-line,
   .hero-sub,
-  .reveal-item,
+  [data-reveal],
   .triangle-path,
   .pillar-item,
-  .stat-item {
+  .stat-item,
+  .vertex-glow {
     opacity: 1 !important;
     transform: none !important;
     stroke-dashoffset: 0 !important;
@@ -210,6 +263,17 @@ button:focus-visible {
 
   .hero-glow__bloom {
     will-change: auto;
+  }
+
+  .hover-lift-card:hover,
+  .hover-lift-card:focus-within {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-gold:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 
@@ -250,7 +314,7 @@ button:focus-visible {
 .portfolio-card {
   flex: 1 1 0;
   min-width: 0;
-  transition: flex-grow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: flex-grow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;

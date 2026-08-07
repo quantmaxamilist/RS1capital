@@ -3,6 +3,7 @@ import { stats } from '../data/site';
 ---
 
 <section
+  id="stats"
   class="relative bg-ivory py-24 lg:py-32 overflow-hidden"
   aria-labelledby="stats-heading"
 >
@@ -12,17 +13,24 @@ import { stats } from '../data/site';
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
     <h2
       id="stats-heading"
-      class="heading-display text-[clamp(2rem,4vw,3rem)] text-black mb-16 reveal-item"
+      class="heading-display text-[clamp(2rem,4vw,3rem)] text-black mb-16"
+      data-reveal
     >
       Strength in Numbers
     </h2>
 
     <!-- PLACEHOLDER: all statistics below — confirm with client before publishing -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+    <div
+      id="stats-grid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12"
+      data-reveal-group
+      data-reveal-stagger="0.09"
+    >
       {
         stats.map((stat) => (
           <div
-            class="stat-item reveal-item"
+            class="stat-item"
+            data-reveal
             data-stat={JSON.stringify(stat)}
             data-placeholder={stat.placeholder ? 'true' : 'false'}
           >

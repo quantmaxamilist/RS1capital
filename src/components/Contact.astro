@@ -20,7 +20,7 @@ const enquiryOptions = [
 
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-      <div class="reveal-item">
+      <div data-reveal>
         <h2
           id="contact-heading"
           class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-6"
@@ -47,7 +47,7 @@ const enquiryOptions = [
         </div>
       </div>
 
-      <div class="reveal-item">
+      <div data-reveal>
         <div class="bg-charcoal border border-white/10 rounded-xl p-6 md:p-8">
           <form id="contact-form" class="space-y-5" novalidate>
             <input type="hidden" name="access_key" value={web3formsKey} />
@@ -139,7 +139,7 @@ const enquiryOptions = [
               ></textarea>
             </div>
 
-            <button type="submit" id="contact-submit" class="contact-submit">
+            <button type="submit" id="contact-submit" class="contact-submit btn-gold">
               Send enquiry
             </button>
 

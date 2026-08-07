@@ -8,24 +8,26 @@ import { services } from '../data/site';
       <h2
         id="services-heading"
         class="heading-display text-[clamp(2rem,4vw,3rem)] text-black"
+        data-reveal
       >
         Services
       </h2>
     </div>
 
-    <div class="portfolio-strip" role="list">
+    <div class="portfolio-strip" role="list" data-reveal-group data-reveal-stagger="0.08">
       {
         services.map((service) => (
           <article
-            class="portfolio-card relative bg-black group"
+            class="portfolio-card hover-lift-card relative bg-black group"
             role="listitem"
             tabindex="0"
             data-service={service.id}
+            data-reveal
             aria-label={service.name}
           >
             <!-- Abstract gold-on-black placeholder panel -->
             <div
-              class="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+              class="absolute inset-0 bg-cover bg-center transition-opacity duration-[400ms]"
               style={{ background: service.gradient }}
               role="img"
               aria-label={`${service.name} — abstract placeholder panel`}
@@ -33,14 +35,14 @@ import { services } from '../data/site';
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
             <!-- Collapsed state: service name -->
-            <div class="collapsed-label absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0">
+            <div class="collapsed-label absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-[400ms] group-hover:opacity-0 group-focus-within:opacity-0">
               <span class="font-display text-lg lg:text-xl font-semibold text-gold/80 tracking-wide text-center [writing-mode:vertical-rl] rotate-180 lg:[writing-mode:horizontal-tb] lg:rotate-0 leading-snug">
                 {service.name}
               </span>
             </div>
 
             <!-- Expanded content -->
-            <div class="expanded-content absolute inset-0 flex flex-col justify-end p-6 lg:p-8 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+            <div class="expanded-content absolute inset-0 flex flex-col justify-end p-6 lg:p-8 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-[400ms] pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
               <p class="font-display text-2xl lg:text-3xl font-semibold text-mist mb-3">{service.name}</p>
               <p class="font-body text-sm text-mist/75 max-w-md leading-relaxed">{service.blurb}</p>
             </div>

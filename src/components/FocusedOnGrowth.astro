@@ -1,6 +1,6 @@
 <section id="about" class="relative bg-panel py-24 lg:py-32 overflow-hidden" aria-labelledby="about-heading">
   <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-    <div class="reveal-item">
+    <div data-reveal>
       <p class="eyebrow mb-4">WHO WE ARE</p>
       <h2 id="about-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-6">
         Support for businesses at critical moments.
@@ -13,18 +13,18 @@
       </p>
     </div>
 
-    <div class="relative reveal-item" id="growth-media">
+    <div class="relative" id="growth-media" data-reveal>
       <div
         class="absolute -top-3 -right-3 w-20 h-20 hatch-corner rounded-sm z-10 pointer-events-none"
         aria-hidden="true"
       ></div>
       <!-- PLACEHOLDER: swap in real RS1 photo/graphic -->
       <div
-        class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gradient-to-br from-charcoal via-black to-gold-2/30"
+        class="growth-media-inner relative rounded-xl overflow-hidden aspect-[16/10] bg-gradient-to-br from-charcoal via-black to-gold-2/30"
         role="img"
         aria-label="Placeholder — RS1 photo or graphic to be added"
       >
-        <div class="absolute inset-0 opacity-60" aria-hidden="true">
+        <div class="absolute inset-0 opacity-60 growth-media-dots" aria-hidden="true">
           {
             Array.from({ length: 24 }).map((_, i) => (
               <span
@@ -40,7 +40,7 @@
           }
         </div>
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-gold/10"
+          class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-gold/10 growth-media-overlay"
           aria-hidden="true"
         ></div>
       </div>
