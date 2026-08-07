@@ -1,5 +1,6 @@
 ---
 import { pillars } from '../data/site';
+import PillarIcon from './PillarIcon.astro';
 ---
 
 <section id="approach" class="relative bg-black py-24 lg:py-32 overflow-hidden" aria-labelledby="approach-heading" data-glow-follow>
@@ -26,7 +27,7 @@ import { pillars } from '../data/site';
       <!-- Left pillar (Capital) -->
       <div class="pillar-item order-2 lg:order-1 lg:w-64 lg:text-right" data-reveal>
         <div class="flex lg:flex-row-reverse items-start gap-4">
-          <i class={pillars[0].icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
+          <PillarIcon id={pillars[0].id} />
           <div>
             <h3 class="font-display text-xl font-semibold text-mist mb-2">{pillars[0].title}</h3>
             <p class="font-body text-sm text-mist/65 leading-relaxed mb-4">{pillars[0].description}</p>
@@ -44,6 +45,24 @@ import { pillars } from '../data/site';
           aria-label="Diagram connecting Capital, Turnaround and Advisory"
         >
           <defs>
+            <clipPath id="triangle-clip">
+              <polygon points="160,30 30,250 290,250" />
+            </clipPath>
+            <radialGradient id="vertex-fill-top" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(201, 162, 39, 0.42)" />
+              <stop offset="55%" stop-color="rgba(201, 162, 39, 0.12)" />
+              <stop offset="100%" stop-color="rgba(201, 162, 39, 0)" />
+            </radialGradient>
+            <radialGradient id="vertex-fill-left" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(201, 162, 39, 0.38)" />
+              <stop offset="55%" stop-color="rgba(201, 162, 39, 0.1)" />
+              <stop offset="100%" stop-color="rgba(201, 162, 39, 0)" />
+            </radialGradient>
+            <radialGradient id="vertex-fill-right" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(201, 162, 39, 0.38)" />
+              <stop offset="55%" stop-color="rgba(201, 162, 39, 0.1)" />
+              <stop offset="100%" stop-color="rgba(201, 162, 39, 0)" />
+            </radialGradient>
             <filter id="vertex-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="blur" />
               <feMerge>
@@ -52,6 +71,7 @@ import { pillars } from '../data/site';
               </feMerge>
             </filter>
           </defs>
+
           <ellipse
             class="triangle-arc"
             cx="160"
@@ -72,6 +92,40 @@ import { pillars } from '../data/site';
             stroke="rgba(230, 196, 88, 0.05)"
             stroke-width="1"
           />
+
+          <g clip-path="url(#triangle-clip)">
+            <polygon points="160,30 30,250 290,250" fill="rgba(201, 162, 39, 0.025)" />
+
+            <circle
+              cx="30"
+              cy="250"
+              r="220"
+              fill="none"
+              stroke="rgba(201, 162, 39, 0.4)"
+              stroke-width="1"
+            />
+            <circle
+              cx="290"
+              cy="250"
+              r="220"
+              fill="none"
+              stroke="rgba(201, 162, 39, 0.4)"
+              stroke-width="1"
+            />
+            <circle
+              cx="160"
+              cy="30"
+              r="220"
+              fill="none"
+              stroke="rgba(201, 162, 39, 0.4)"
+              stroke-width="1"
+            />
+
+            <circle cx="160" cy="30" r="44" fill="url(#vertex-fill-top)" class="vertex-radial" />
+            <circle cx="30" cy="250" r="40" fill="url(#vertex-fill-left)" class="vertex-radial" />
+            <circle cx="290" cy="250" r="40" fill="url(#vertex-fill-right)" class="vertex-radial" />
+          </g>
+
           <polygon
             id="triangle-shape"
             class="triangle-path"
@@ -97,7 +151,7 @@ import { pillars } from '../data/site';
           pillars.slice(1).map((pillar) => (
             <div class="pillar-item" data-reveal>
               <div class="flex items-start gap-4">
-                <i class={pillar.icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
+                <PillarIcon id={pillar.id} />
                 <div>
                   <h3 class="font-display text-xl font-semibold text-mist mb-2">{pillar.title}</h3>
                   <p class="font-body text-sm text-mist/65 leading-relaxed mb-4">{pillar.description}</p>
@@ -121,5 +175,9 @@ import { pillars } from '../data/site';
 
   .vertex-glow {
     opacity: 0.6;
+  }
+
+  .vertex-radial {
+    opacity: 0.55;
   }
 </style>

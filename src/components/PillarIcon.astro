@@ -1,0 +1,28 @@
+---
+interface Props {
+  id: 'capital' | 'turnaround' | 'advisory';
+}
+
+const { id } = Astro.props;
+
+import capital from '../icons/capital.svg?raw';
+import turnaround from '../icons/turnaround.svg?raw';
+import advisory from '../icons/advisory.svg?raw';
+
+const icons: Record<Props['id'], string> = {
+  capital,
+  turnaround,
+  advisory,
+};
+---
+
+<span class="pillar-icon text-gold shrink-0 mt-1" set:html={icons[id]} aria-hidden="true" />
+
+<style>
+  .pillar-icon :global(svg) {
+    display: block;
+    width: 3.25rem;
+    height: 3.25rem;
+    filter: drop-shadow(0 0 10px rgba(201, 162, 39, 0.35));
+  }
+</style>

@@ -111,7 +111,6 @@ export const audienceCards: AudienceCard[] = [
 export const pillars = [
   {
     id: 'capital',
-    icon: 'fa-solid fa-coins',
     title: 'Capital',
     description: 'Direct lending, structured finance and investment for special situations and distress.',
     link: 'LEARN MORE',
@@ -119,7 +118,6 @@ export const pillars = [
   },
   {
     id: 'turnaround',
-    icon: 'fa-solid fa-arrows-rotate',
     title: 'Turnaround',
     description: 'Hands-on operational turnaround and restructuring to stabilise and rebuild value.',
     link: 'LEARN MORE',
@@ -127,7 +125,6 @@ export const pillars = [
   },
   {
     id: 'advisory',
-    icon: 'fa-solid fa-handshake',
     title: 'Advisory',
     description: 'Strategic and financial advice for owners, lenders and insolvency practitioners.',
     link: 'LEARN MORE',

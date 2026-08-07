@@ -211,6 +211,7 @@ function initScrollReveals(): void {
 function initTriangleAnimation(): void {
   const triangle = document.getElementById('triangle-shape');
   const vertices = document.querySelectorAll<SVGElement>('.vertex-glow');
+  const vertexRadials = document.querySelectorAll<SVGElement>('.vertex-radial');
   const arcs = document.querySelectorAll<SVGElement>('.triangle-arc');
 
   if (!triangle) return;
@@ -239,6 +240,21 @@ function initTriangleAnimation(): void {
         yoyo: true,
         repeat: -1,
         delay: i * 0.8,
+      },
+    );
+  });
+
+  vertexRadials.forEach((radial, i) => {
+    gsap.fromTo(
+      radial,
+      { opacity: 0.35 },
+      {
+        opacity: 0.65,
+        duration: 5 + i,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: i * 0.6,
       },
     );
   });
