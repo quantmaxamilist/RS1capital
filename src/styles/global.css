@@ -48,6 +48,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Anchor targets — offset for fixed header + announcement bar */
+section[id] {
+  scroll-margin-top: calc(var(--announcement-height, 40px) + 5.5rem);
+}
+
 ::selection {
   background: rgba(201, 162, 39, 0.25);
   color: var(--color-paper);

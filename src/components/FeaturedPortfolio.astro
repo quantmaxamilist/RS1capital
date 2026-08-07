@@ -25,7 +25,6 @@ import { services } from '../data/site';
             data-reveal
             aria-label={service.name}
           >
-            <!-- Abstract gold-on-black placeholder panel -->
             <div
               class="absolute inset-0 bg-cover bg-center transition-opacity duration-[400ms]"
               style={{ background: service.gradient }}
@@ -34,15 +33,15 @@ import { services } from '../data/site';
             ></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-            <!-- Collapsed state: service name -->
-            <div class="collapsed-label absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-[400ms] group-hover:opacity-0 group-focus-within:opacity-0">
+            <!-- Collapsed: vertical/horizontal title only (desktop idle state) -->
+            <div class="service-card__collapsed absolute inset-0 items-center justify-center p-4 transition-opacity duration-[400ms]">
               <span class="font-display text-lg lg:text-xl font-semibold text-gold/80 tracking-wide text-center [writing-mode:vertical-rl] rotate-180 lg:[writing-mode:horizontal-tb] lg:rotate-0 leading-snug">
                 {service.name}
               </span>
             </div>
 
-            <!-- Expanded content -->
-            <div class="expanded-content absolute inset-0 flex flex-col justify-end p-6 lg:p-8 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-[400ms] pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+            <!-- Expanded: title + blurb -->
+            <div class="service-card__expanded absolute inset-0 flex flex-col justify-end p-6 lg:p-8 transition-opacity duration-[400ms]">
               <p class="font-display text-2xl lg:text-3xl font-semibold text-mist mb-3">{service.name}</p>
               <p class="font-body text-sm text-mist/75 max-w-md leading-relaxed">{service.blurb}</p>
             </div>
@@ -53,40 +52,53 @@ import { services } from '../data/site';
   </div>
 </section>
 
-<!-- PLACEHOLDER: Case Studies content — link nav anchor until real case studies are added -->
-<section id="case-studies" class="sr-only" aria-hidden="true">
-  <p>Case studies — content to be added</p>
-</section>
-
 <style>
-  .portfolio-card:first-child .collapsed-label {
-    opacity: 0;
+  /* Mobile: always show expanded panel only */
+  .service-card__collapsed {
+    display: none;
   }
-  .portfolio-card:first-child .expanded-content {
+
+  .service-card__expanded {
+    display: flex;
     opacity: 1;
     pointer-events: auto;
   }
 
-  @media (max-width: 767px) {
-    .portfolio-card .collapsed-label {
-      opacity: 0;
+  @media (min-width: 768px) {
+    .service-card__collapsed {
+      display: flex;
+      opacity: 1;
     }
-    .portfolio-card .expanded-content {
+
+    .service-card__expanded {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* First card open by default */
+    .portfolio-card:first-child .service-card__collapsed {
+      display: none;
+    }
+
+    .portfolio-card:first-child .service-card__expanded {
+      display: flex;
       opacity: 1;
       pointer-events: auto;
     }
-  }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    /* Hover / focus expands */
+    .portfolio-card:hover .service-card__collapsed,
+    .portfolio-card:focus-within .service-card__collapsed {
+      display: none;
+    }
+
+    .portfolio-card:hover .service-card__expanded,
+    .portfolio-card:focus-within .service-card__expanded {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 </style>
 

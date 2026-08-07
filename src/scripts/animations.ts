@@ -12,8 +12,99 @@ const REVEAL_DEFAULTS = {
   ease: 'power2.out' as const,
 };
 
+const REVEAL_START = 'top 85%';
+
+let lenisInstance: Lenis | null = null;
+
 function formatNumber(n: number): string {
   return n.toLocaleString('en-US');
+}
+
+function getScrollOffset(): number {
+  const announcement = document.getElementById('announcement-bar');
+  const nav = document.getElementById('main-nav');
+  let offset = 16;
+
+  if (announcement && !announcement.classList.contains('hidden')) {
+    offset += announcement.offsetHeight;
+  }
+  if (nav) {
+    offset += nav.offsetHeight;
+  }
+
+  return offset;
+}
+
+function isPastRevealStart(trigger: Element): boolean {
+  const rect = trigger.getBoundingClientRect();
+  const threshold = window.innerHeight * 0.85;
+  return rect.top <= threshold;
+}
+
+function setRevealVisible(elements: gsap.TweenTarget): void {
+  gsap.set(elements, { opacity: 1, y: 0, clearProps: 'transform' });
+}
+
+function flushInViewReveals(): void {
+  document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
+    if (!isPastRevealStart(group)) return;
+    setRevealVisible(group.querySelectorAll('[data-reveal]'));
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+    if (el.closest('[data-reveal-group]')) return;
+    if (isPastRevealStart(el)) {
+      setRevealVisible(el);
+    }
+  });
+}
+
+/** Catch any reveal still hidden while its trigger zone is already passed */
+function hardenReveals(): void {
+  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+    const opacity = parseFloat(window.getComputedStyle(el).opacity);
+    if (opacity < 0.1 && isPastRevealStart(el)) {
+      setRevealVisible(el);
+    }
+  });
+}
+
+function closeMobileMenu(): void {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (!menu?.classList.contains('open')) return;
+
+  toggle?.classList.remove('open');
+  menu.classList.remove('open');
+  toggle?.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function initAnchorScroll(): void {
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = document.querySelector<HTMLElement>(href);
+      if (!target) return;
+
+      event.preventDefault();
+      closeMobileMenu();
+
+      const offset = -getScrollOffset();
+
+      if (lenisInstance) {
+        lenisInstance.scrollTo(target, { offset, duration: 1.1, easing: (t) => 1 - (1 - t) ** 3 });
+      } else {
+        const top = target.getBoundingClientRect().top + window.scrollY + offset;
+        window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }
+
+      history.pushState(null, '', href);
+    });
+  });
 }
 
 function initLenis(): Lenis | null {
@@ -33,6 +124,7 @@ function initLenis(): Lenis | null {
   });
   gsap.ticker.lagSmoothing(0);
 
+  lenisInstance = lenis;
   return lenis;
 }
 
@@ -78,13 +170,19 @@ function initScrollReveals(): void {
     if (!items.length) return;
 
     const stagger = parseFloat(group.dataset.revealStagger ?? '0.09');
+    const alreadyVisible = isPastRevealStart(group);
+
+    if (alreadyVisible) {
+      setRevealVisible(items);
+      return;
+    }
 
     gsap.from(items, {
       ...REVEAL_DEFAULTS,
       stagger,
       scrollTrigger: {
         trigger: group,
-        start: 'top 85%',
+        start: REVEAL_START,
         toggleActions: 'play none none none',
       },
     });
@@ -93,11 +191,16 @@ function initScrollReveals(): void {
   gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
     if (el.closest('[data-reveal-group]')) return;
 
+    if (isPastRevealStart(el)) {
+      setRevealVisible(el);
+      return;
+    }
+
     gsap.from(el, {
       ...REVEAL_DEFAULTS,
       scrollTrigger: {
         trigger: el,
-        start: 'top 85%',
+        start: REVEAL_START,
         toggleActions: 'play none none none',
       },
     });
@@ -119,7 +222,7 @@ function initTriangleAnimation(): void {
     ease: 'power2.inOut',
     scrollTrigger: {
       trigger: '#triangle-wrap',
-      start: 'top 85%',
+      start: REVEAL_START,
       toggleActions: 'play none none none',
     },
   });
@@ -203,7 +306,7 @@ function animateStatCounter(
     ease: 'power2.out',
     scrollTrigger: {
       trigger: '#stats-grid',
-      start: 'top 85%',
+      start: REVEAL_START,
       toggleActions: 'play none none none',
     },
     onUpdate: () => {
@@ -237,15 +340,49 @@ function initStatCounters(): void {
   });
 }
 
+function refreshScrollTriggers(): void {
+  ScrollTrigger.refresh();
+  flushInViewReveals();
+  hardenReveals();
+}
+
+function scrollToHash(immediate = false): void {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const target = document.querySelector<HTMLElement>(hash);
+  if (!target) return;
+
+  const offset = -getScrollOffset();
+
+  if (lenisInstance) {
+    lenisInstance.scrollTo(target, { offset, immediate, duration: immediate ? 0 : 1.1 });
+  } else {
+    const top = target.getBoundingClientRect().top + window.scrollY + offset;
+    window.scrollTo({ top, behavior: immediate || prefersReducedMotion ? 'auto' : 'smooth' });
+  }
+}
+
 export function initAnimations(): void {
   gsap.registerPlugin(ScrollTrigger);
 
   initLenis();
+  initAnchorScroll();
   initHeroAnimations();
   initScrollReveals();
   initTriangleAnimation();
   initMediaAmbient();
   initStatCounters();
+
+  refreshScrollTriggers();
+  scrollToHash(true);
+
+  window.addEventListener('load', () => {
+    refreshScrollTriggers();
+    scrollToHash(true);
+  });
+  window.addEventListener('resize', () => ScrollTrigger.refresh());
+  window.addEventListener('announcement-dismissed', refreshScrollTriggers);
 }
 
 if (document.readyState === 'loading') {

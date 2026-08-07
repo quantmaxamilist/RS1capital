@@ -19,7 +19,7 @@ import { pillars } from '../data/site';
       data-reveal-group
       data-reveal-stagger="0.1"
     >
-      <!-- Left pillar -->
+      <!-- Left pillar (Capital) -->
       <div class="pillar-item order-2 lg:order-1 lg:w-64 lg:text-right" data-reveal>
         <div class="flex lg:flex-row-reverse items-start gap-4">
           <i class={pillars[0].icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
@@ -87,26 +87,8 @@ import { pillars } from '../data/site';
         </svg>
       </div>
 
-      <!-- Right pillars stacked on mobile -->
-      <div class="order-3 lg:hidden w-full space-y-10">
-        {
-          pillars.slice(1).map((pillar) => (
-            <div class="pillar-item" data-reveal>
-              <div class="flex items-start gap-4">
-                <i class={pillar.icon} class="text-gold text-lg mt-1 shrink-0" aria-hidden="true"></i>
-                <div>
-                  <h3 class="font-display text-xl font-semibold text-mist mb-2">{pillar.title}</h3>
-                  <p class="font-body text-sm text-mist/65 leading-relaxed mb-4">{pillar.description}</p>
-                  <a href={pillar.href} class="explore-link">{pillar.link}</a>
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Desktop right pillars -->
-      <div class="hidden lg:flex lg:flex-col lg:order-3 lg:w-64 gap-16">
+      <!-- Turnaround + Advisory (single block, all breakpoints) -->
+      <div class="order-3 lg:order-3 w-full lg:w-64 flex flex-col gap-10 lg:gap-16">
         {
           pillars.slice(1).map((pillar) => (
             <div class="pillar-item" data-reveal>
