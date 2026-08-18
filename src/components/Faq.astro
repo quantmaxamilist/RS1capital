@@ -1,0 +1,104 @@
+---
+import { faqs } from '../data/site';
+---
+
+<section id="faq" class="bg-black py-24 lg:py-32" aria-labelledby="faq-heading">
+  <div class="max-w-3xl mx-auto px-6 lg:px-10">
+    <p class="eyebrow mb-4 text-center" data-reveal>FAQ</p>
+    <h2
+      id="faq-heading"
+      class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-14 text-center"
+      data-reveal
+    >
+      Frequently asked questions
+    </h2>
+
+    <div class="divide-y divide-white/10 border-t border-b border-white/10" data-reveal-group data-reveal-stagger="0.06">
+      {
+        faqs.map((item) => (
+          <details class="faq-item group" data-reveal>
+            <summary class="faq-summary">
+              <span class="font-display text-lg lg:text-xl font-semibold text-mist pr-6">{item.question}</span>
+              <span class="faq-icon" aria-hidden="true">
+                <span class="faq-icon__bar faq-icon__bar--h"></span>
+                <span class="faq-icon__bar faq-icon__bar--v"></span>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p class="font-body text-sm lg:text-base text-mist/70 leading-relaxed">{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  .faq-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .faq-icon__bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--color-gold);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-icon__bar--h {
+    width: 1.25rem;
+    height: 1.5px;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-icon__bar--v {
+    width: 1.5px;
+    height: 1.25rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-item[open] .faq-icon__bar--v {
+    transform: translate(-50%, -50%) scaleY(0);
+    opacity: 0;
+  }
+
+  .faq-answer {
+    overflow: hidden;
+    padding-bottom: 1.5rem;
+    margin-top: -0.25rem;
+  }
+
+  .faq-item[open] .faq-summary .font-display {
+    color: var(--color-gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon__bar {
+      transition: none;
+    }
+  }
+</style>

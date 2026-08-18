@@ -44,6 +44,11 @@ import { services } from '../data/site';
             <div class="service-card__expanded absolute inset-0 flex flex-col justify-end p-6 lg:p-8 transition-opacity duration-[400ms]">
               <p class="font-display text-2xl lg:text-3xl font-semibold text-mist mb-3">{service.name}</p>
               <p class="font-body text-sm text-mist/75 max-w-md leading-relaxed">{service.blurb}</p>
+              {service.href && (
+                <a href={service.href} class="explore-link mt-4 self-start relative z-[2]">
+                  {service.cta ?? 'Learn more'} <span aria-hidden="true">→</span>
+                </a>
+              )}
             </div>
           </article>
         ))
