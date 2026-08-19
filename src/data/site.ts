@@ -191,6 +191,14 @@ export const pillars = [
   },
 ] as const;
 
+/** WhatsApp click-to-chat (business mobile 07500 111500 → +44 7500 111500) */
+export const whatsapp = {
+  display: '07500 111500',
+  href: `https://wa.me/447500111500?text=${encodeURIComponent(
+    "Hi RS1 Capital, I'd like to discuss an enquiry.",
+  )}`,
+};
+
 /** "The Businesses We Buy" acquisitions page */
 export const acquisitionsIntro =
   'We acquire companies across the UK and Europe, working directly with owners and alongside lenders, insolvency practitioners and professional advisors. Every business is different, but the situations we buy into fall into one of three categories.';

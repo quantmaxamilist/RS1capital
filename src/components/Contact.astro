@@ -1,4 +1,6 @@
 ---
+import { whatsapp } from '../data/site';
+
 const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
 
 const enquiryOptions = [
@@ -37,6 +39,21 @@ const enquiryOptions = [
           <p>
             <a href="mailto:info@rs1.uk" class="text-gold hover:underline text-base">info@rs1.uk</a>
           </p>
+
+          <a
+            href={whatsapp.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-btn"
+            aria-label={`Message RS1 Capital on WhatsApp at ${whatsapp.display}`}
+          >
+            <i class="fa-brands fa-whatsapp whatsapp-btn__icon" aria-hidden="true"></i>
+            <span class="whatsapp-btn__text">
+              <span class="whatsapp-btn__label">Chat on WhatsApp</span>
+              <span class="whatsapp-btn__num">{whatsapp.display}</span>
+            </span>
+          </a>
+
           <address class="not-italic">
             <strong class="text-mist block mb-1">Spain</strong>
             C/ San Fernando 34, 07702 Mahón, Balearic Islands
@@ -158,6 +175,56 @@ const enquiryOptions = [
 </section>
 
 <style>
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(201, 162, 39, 0.45);
+    border-radius: 0.5rem;
+    background: rgba(201, 162, 39, 0.04);
+    text-decoration: none;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  }
+
+  .whatsapp-btn:hover {
+    border-color: var(--color-gold);
+    background: rgba(201, 162, 39, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-btn__icon {
+    font-size: 1.5rem;
+    color: #25d366;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-btn__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .whatsapp-btn__label {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-mist);
+  }
+
+  .whatsapp-btn__num {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: rgba(240, 236, 224, 0.6);
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-btn {
+      transition: none;
+    }
+  }
+
   .contact-label {
     display: block;
     font-family: var(--font-body);
