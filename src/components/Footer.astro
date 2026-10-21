@@ -77,25 +77,9 @@ const resolve = (href: string) => (!onHome && href.startsWith('#') ? `/${href}` 
         © 2026 RS1 Capital Limited. All rights reserved.
       </p>
 
-      <a href="#privacy" class="font-body text-xs text-mist/50 hover:text-gold transition-colors">
-        Privacy Policy
+      <a href="/privacy" class="font-body text-xs text-mist/50 hover:text-gold transition-colors">
+        Privacy
       </a>
     </div>
   </div>
 </footer>
-
-<section id="privacy" class="sr-only" aria-hidden="true"></section>
-
-<style>
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-</style>
