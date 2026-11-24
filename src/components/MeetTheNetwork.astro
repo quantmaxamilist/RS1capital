@@ -10,12 +10,11 @@ import { audienceCards } from '../data/site';
       </h2>
     </div>
 
-    <div id="network-rail" class="network-rail mb-10" role="list" data-reveal-group data-reveal-stagger="0.1">
+    <div id="network-rail" class="network-rail mb-10" data-reveal-group data-reveal-stagger="0.1">
       {
         audienceCards.map((card) => (
           <article
             class="hover-lift-card w-64 md:w-72 rounded-xl overflow-hidden relative bg-black shrink-0 p-8 flex flex-col justify-end min-h-[16rem]"
-            role="listitem"
             data-reveal
           >
             <div class="absolute inset-0 bg-gradient-to-br from-charcoal via-black to-gold/10" aria-hidden="true"></div>

@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { whatsapp } from '../data/site';
 
 const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'd43c2b45-2c6a-45c9-b4a6-03561cdf25e4';
@@ -47,7 +48,7 @@ const enquiryOptions = [
             class="whatsapp-btn"
             aria-label={`Message RS1 Capital on WhatsApp at ${whatsapp.display}`}
           >
-            <i class="fa-brands fa-whatsapp whatsapp-btn__icon" aria-hidden="true"></i>
+            <Icon name="whatsapp" class="whatsapp-btn__icon" />
             <span class="whatsapp-btn__text">
               <span class="whatsapp-btn__label">Chat on WhatsApp</span>
               <span class="whatsapp-btn__num">{whatsapp.display}</span>
@@ -161,7 +162,7 @@ const enquiryOptions = [
               Send enquiry
             </button>
             <p class="font-body text-xs text-mist/50">
-              By sending this form you agree to our <a href="/privacy" class="text-gold hover:underline">Privacy Policy</a>.
+              By sending this form you agree to our <a href="/privacy" class="text-link">Privacy Policy</a>.
             </p>
 
             <p

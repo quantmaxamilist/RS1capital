@@ -13,15 +13,20 @@
     </div>
   </div>
 
-  <div class="relative z-10 w-full max-w-4xl mx-auto px-6 lg:px-10 text-center py-6 pb-28 md:py-12 md:pb-12 md:-translate-y-[8vh]">
-    <p id="hero-eyebrow" class="hero-eyebrow eyebrow mb-5 md:mb-8 tracking-[0.22em] md:tracking-[0.35em]">
+  <div class="hero-content relative z-10 w-full max-w-4xl mx-auto px-6 lg:px-10 text-center py-6 pb-28 md:py-12 md:pb-12">
+    <p id="hero-eyebrow" class="hero-eyebrow eyebrow tracking-[0.22em] md:tracking-[0.35em]">
       SPEED • CERTAINTY • PRAGMATISM
     </p>
 
-    <h1 class="hero-headline heading-display text-[2rem] leading-[1.08] sm:text-[2.35rem] md:text-[clamp(2.75rem,7vw,4.5rem)] text-mist mb-5 md:mb-8">
-      <span class="hero-line block">Capital and expertise</span>
-      <span class="hero-line block">for critical moments.</span>
+    <h1 class="hero-headline heading-display text-mist">
+      <span class="hero-line block">Business acquisitions,</span>
+      <span class="hero-line block">investment and turnaround</span>
+      <span class="hero-line block">across the UK and Europe.</span>
     </h1>
+
+    <p class="hero-tagline hero-line font-display text-gold">
+      Capital and expertise for critical moments.
+    </p>
 
     <p
       id="hero-sub"
@@ -35,9 +40,75 @@
 </section>
 
 <style>
+  .hero-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
   .hero-headline {
     letter-spacing: -0.015em;
     font-variant-numeric: lining-nums;
     font-feature-settings: "lnum" 1;
+    /* Three lines. Sized so each line stays whole on a 320px phone. */
+    font-size: clamp(1.5rem, 7.4vw, 1.95rem);
+    line-height: 1.1;
+    margin-bottom: 0.7rem;
+  }
+
+  /* Supporting line under the main heading. Two balanced lines on a phone, one on desktop. */
+  .hero-tagline {
+    font-size: clamp(1.05rem, 4.7vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: 1.15rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-headline {
+      font-size: 2.25rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.45rem;
+    }
+  }
+
+  /* Desktop: sizes and gaps scale with the width and also with the height, so on a short
+     laptop screen the heading, supporting line and intro stay clear of the header above
+     and the horizon glow below. */
+  @media (min-width: 768px) {
+    .hero-content {
+      transform: translateY(-9.5vh);
+      transform: translateY(-9.5svh);
+    }
+
+    .hero-eyebrow {
+      margin-bottom: clamp(1.1rem, 3vh, 2rem);
+      margin-bottom: clamp(1.1rem, 3svh, 2rem);
+    }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, min(5.2vw, 6.1vh), 4rem);
+      font-size: clamp(2.5rem, min(5.2vw, 6.1svh), 4rem);
+      margin-bottom: clamp(0.55rem, 1.6vh, 1rem);
+      margin-bottom: clamp(0.55rem, 1.6svh, 1rem);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.3rem, min(2.3vw, 3.1vh), 1.75rem);
+      font-size: clamp(1.3rem, min(2.3vw, 3.1svh), 1.75rem);
+      margin-bottom: clamp(1rem, 2.7vh, 1.9rem);
+      margin-bottom: clamp(1rem, 2.7svh, 1.9rem);
+    }
+  }
+
+  /* Short desktop windows and phones held sideways: there is no room to centre the block
+     between the header and the glow, so it starts below the header and the hero grows
+     to fit. The glow moves down to match (see .hero-glow rules in global.css). */
+  @media (min-width: 768px) and (max-height: 699px) {
+    .hero-content {
+      transform: none;
+      padding-bottom: 7rem;
+    }
   }
 </style>

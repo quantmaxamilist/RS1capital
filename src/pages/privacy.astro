@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { company } from '../data/site';
+
+const lastUpdated = '24 November 2026';
 
 const title = 'Privacy Policy | RS1 Capital Limited';
 const description =
@@ -20,7 +23,7 @@ const description =
         <h1 id="privacy-heading" class="heading-display text-[clamp(2.5rem,6vw,4.5rem)] text-mist mb-6">
           Privacy policy
         </h1>
-        <p class="font-body text-sm text-mist/50">Last updated: 21 October 2026</p>
+        <p class="font-body text-sm text-mist/50">Last updated: {lastUpdated}</p>
       </div>
     </section>
 
@@ -30,13 +33,13 @@ const description =
           <h2 class="heading-display text-2xl text-mist">Who we are</h2>
           <p>RS1 Capital Limited is the data controller for personal information collected through this website.</p>
           <ul class="list-disc pl-5 space-y-2">
-            <li>Email: <a href="mailto:info@rs1.uk" class="text-gold hover:underline">info@rs1.uk</a></li>
-            <li>WhatsApp: <a href="https://wa.me/447500111500" class="text-gold hover:underline">07500 111500</a></li>
+            <li>Email: <a href="mailto:info@rs1.uk" class="text-link">info@rs1.uk</a></li>
+            <li>WhatsApp: <a href="https://wa.me/447500111500" class="text-link">07500 111500</a></li>
             <li>United Kingdom office: 160 City Road, London, EC1V 2NX</li>
             <li>Spain office: C/ San Fernando 34, 07702 Mahón, Balearic Islands</li>
           </ul>
-          <p class="bg-charcoal border border-gold/40 rounded-md px-4 py-3 text-sm text-mist">
-            TODO: company number is not published on this website. Add it here.
+          <p>
+            {company.legalName} is registered in {company.jurisdiction}, company number {company.number}. Registered office: {company.registeredOffice}.
           </p>
         </div>
 
@@ -46,7 +49,7 @@ const description =
             If you use the enquiry form, we collect your name, email address, company name if you give one, phone number if you give one, the nature of your enquiry, and your message.
           </p>
           <p>
-            When you load a page, your browser also sends technical information such as your IP address to the host of this website, to Google when the site’s fonts are loaded, and to Cloudflare when the icon files are loaded. We do not use that information to identify you.
+            When you load a page, your browser also sends technical information such as your IP address to the host of this website. We do not use that information to identify you.
           </p>
         </div>
 
@@ -63,8 +66,6 @@ const description =
           <ul class="list-disc pl-5 space-y-2">
             <li>Vercel, which hosts the website.</li>
             <li>Web3Forms, which receives the enquiry form and sends it to us.</li>
-            <li>Google, which supplies the fonts used on these pages. Your browser requests those font files from Google, so Google receives your IP address.</li>
-            <li>Cloudflare, which supplies the icon files (Font Awesome) used on these pages. Your browser requests those files from Cloudflare, so Cloudflare receives your IP address.</li>
           </ul>
           <p>Some of these providers may process personal data outside the UK. Where they do, they do so under appropriate safeguards.</p>
           <p>The WhatsApp link leaves this website. WhatsApp has its own privacy notice.</p>
@@ -81,10 +82,10 @@ const description =
             You can ask us for access to the personal information we hold about you, and you can ask us to correct it, delete it, or stop using it in certain cases (objection).
           </p>
           <p>
-            You also have the right to complain to the Information Commissioner’s Office at <a href="https://ico.org.uk" class="text-gold hover:underline" target="_blank" rel="noopener">ico.org.uk</a>.
+            You also have the right to complain to the Information Commissioner’s Office at <a href="https://ico.org.uk" class="text-link" target="_blank" rel="noopener">ico.org.uk</a>.
           </p>
           <p>
-            To use these rights, email <a href="mailto:info@rs1.uk" class="text-gold hover:underline">info@rs1.uk</a> or write to RS1 Capital Limited, 160 City Road, London, EC1V 2NX.
+            To use these rights, email <a href="mailto:info@rs1.uk" class="text-link">info@rs1.uk</a> or write to RS1 Capital Limited, 160 City Road, London, EC1V 2NX.
           </p>
         </div>
 
@@ -92,11 +93,11 @@ const description =
           <h2 class="heading-display text-2xl text-mist">Cookies</h2>
           <p>This site does not use advertising or tracking cookies.</p>
           <p>
-            It does not set analytics, advertising or social-media cookies. Fonts are loaded from Google and icons from Cloudflare. Those requests do not set a cookie on this site. We do not use a cookie banner because there is nothing non-essential to accept or reject.
+            It does not set analytics, advertising or social-media cookies. The fonts and icons on these pages are served from this website itself, not from a third party. We do not use a cookie banner because there is nothing non-essential to accept or reject.
           </p>
         </div>
 
-        <p class="text-sm text-mist/50">Last updated: 21 October 2026</p>
+        <p class="text-sm text-mist/50">Last updated: {lastUpdated}</p>
       </div>
     </section>
   </main>

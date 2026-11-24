@@ -233,3 +233,24 @@ export const footerLinks = {
   ],
   col2: [{ label: 'FAQ', href: '#faq' }, { label: 'Contact', href: '#contact' }],
 };
+
+/** Company details — single source for metadata, structured data and the privacy page. */
+export const company = {
+  name: 'RS1 Capital',
+  legalName: 'RS1 Capital Limited',
+  /** Confirmed by the client and checked against the Companies House register (24 Nov 2026). */
+  number: '11159104',
+  jurisdiction: 'England and Wales',
+  registeredOffice: '160 City Road, London, EC1V 2NX',
+  email: 'info@rs1.uk',
+  description:
+    'RS1 Capital Limited is a specialist investment, lending and advisory firm supporting businesses across the UK and Europe — providing capital, operational turnaround and strategic advice where speed, certainty and pragmatism matter.',
+} as const;
+
+/**
+ * Verified social profiles only. Leave a value empty until the real URL is confirmed:
+ * an empty value hides the footer icon and keeps the profile out of structured data.
+ */
+export const social: { linkedin: string } = {
+  linkedin: '',
+};

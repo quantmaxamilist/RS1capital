@@ -1,10 +1,14 @@
+---
+import Icon from './Icon.astro';
+---
+
 <div
   id="announcement-bar"
   class="fixed top-0 left-0 right-0 z-[110] bg-charcoal border-b border-white/5 text-center py-2.5 px-10 text-xs font-body font-medium tracking-wide text-mist/90"
 >
   <p class="pr-8">
     Facing a time-critical situation? Speak to us —
-    <a href="mailto:info@rs1.uk" class="text-gold hover:underline">info@rs1.uk</a>
+    <a href="mailto:info@rs1.uk" class="text-link">info@rs1.uk</a>
   </p>
   <button
     id="announcement-dismiss"
@@ -12,7 +16,7 @@
     class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-mist/60 hover:text-mist transition-colors"
     aria-label="Dismiss announcement"
   >
-    <i class="fa-solid fa-xmark text-sm" aria-hidden="true"></i>
+    <Icon name="xmark" class="text-sm" />
   </button>
 </div>
 
