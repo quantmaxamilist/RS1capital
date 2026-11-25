@@ -1,0 +1,52 @@
+---
+/**
+ * Guidance text for a service page: each block has its heading on the left and its
+ * paragraphs on the right (stacked on phones and tablets), divided by hairlines.
+ * Sits on the charcoal panel band the homepage uses between black sections.
+ */
+import type { GuidanceSection } from '../data/site';
+
+interface Props {
+  sections: readonly GuidanceSection[];
+  /** Accessible name for the group, e.g. "Making an enquiry". */
+  label: string;
+}
+
+const { sections, label } = Astro.props;
+---
+
+<section class="bg-panel py-6 lg:py-10" aria-label={label}>
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div data-reveal-group data-reveal-stagger="0.1">
+      {
+        sections.map((section) => (
+          <article
+            class="guidance-row grid lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] gap-5 lg:gap-14 py-12 lg:py-16"
+            aria-labelledby={section.id}
+            data-reveal
+          >
+            <h2 id={section.id} class="heading-display text-2xl lg:text-3xl text-mist [text-wrap:balance]">
+              {section.title}
+            </h2>
+            <div class="font-body text-base text-mist/70 leading-relaxed space-y-5 max-w-2xl">
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              {section.note && <p class="guidance-note">{section.note}</p>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .guidance-row + .guidance-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* A caution: same text size, marked by a gold rule so it reads as an aside, not a new point. */
+  .guidance-note {
+    border-left: 1px solid rgba(201, 162, 39, 0.6);
+    padding-left: 1.25rem;
+  }
+</style>

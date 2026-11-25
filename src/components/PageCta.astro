@@ -1,0 +1,39 @@
+---
+/**
+ * Closing call to action for a service page. The button goes to the contact form on the
+ * homepage; the email link and the optional related page sit beside and below it.
+ */
+import { company, type PageCtaContent } from '../data/site';
+
+type Props = PageCtaContent;
+
+const { heading, text, action, related } = Astro.props;
+---
+
+<section class="relative bg-black py-24 lg:py-28 overflow-hidden" aria-labelledby="page-cta-heading" data-glow-follow>
+  <div class="contact-glow absolute bottom-0 left-0 right-0 h-2/3 pointer-events-none" aria-hidden="true"></div>
+  <div class="max-w-3xl mx-auto px-6 lg:px-10 relative z-[1] text-center">
+    <h2 id="page-cta-heading" class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-5" data-reveal>
+      {heading}
+    </h2>
+    <p class="font-body text-mist/70 text-base leading-relaxed mb-10 max-w-xl mx-auto [text-wrap:balance]" data-reveal>
+      {text}
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
+      <a
+        href="/#contact"
+        class="btn-gold inline-flex items-center justify-center font-body text-xs font-semibold tracking-[0.14em] uppercase text-black bg-gold rounded-md px-8 py-4"
+      >
+        {action}
+      </a>
+      <a href={`mailto:${company.email}`} class="explore-link text-sm">{company.email}</a>
+    </div>
+    {
+      related && (
+        <p class="font-body text-sm text-mist/70 mt-12 [text-wrap:balance]" data-reveal>
+          Related: <a href={related.href} class="text-link">{related.label}</a>
+        </p>
+      )
+    }
+  </div>
+</section>

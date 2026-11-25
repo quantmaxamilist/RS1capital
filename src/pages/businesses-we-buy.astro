@@ -3,7 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { acquisitionsIntro, acquisitionSituations } from '../data/site';
+import GuidanceSections from '../components/GuidanceSections.astro';
+import Faq from '../components/Faq.astro';
+import PageCta from '../components/PageCta.astro';
+import {
+  acquisitionsIntro,
+  acquisitionSituations,
+  acquisitionGuidance,
+  acquisitionFaqs,
+  acquisitionsCta,
+} from '../data/site';
 
 const title = 'Distressed Business Acquisitions UK & Europe | RS1 Capital';
 const description =
@@ -38,7 +47,7 @@ const description =
     </section>
 
     <!-- The three situations -->
-    <section class="bg-black pb-8 lg:pb-12" aria-label="The situations we buy into">
+    <section class="bg-black pb-16 lg:pb-24" aria-label="The situations we buy into">
       <div class="max-w-4xl mx-auto px-6 lg:px-10">
         <div class="border-t border-white/10" data-reveal-group data-reveal-stagger="0.1">
           {
@@ -58,24 +67,12 @@ const description =
       </div>
     </section>
 
-    <!-- Speak to us CTA -->
-    <section class="relative bg-black py-24 lg:py-28 overflow-hidden" data-glow-follow>
-      <div class="contact-glow absolute bottom-0 left-0 right-0 h-2/3 pointer-events-none" aria-hidden="true"></div>
-      <div class="max-w-3xl mx-auto px-6 lg:px-10 relative z-[1] text-center">
-        <h2 class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-5" data-reveal>
-          Speak to us, in confidence
-        </h2>
-        <p class="font-body text-mist/70 text-base leading-relaxed mb-10 max-w-xl mx-auto" data-reveal>
-          Every enquiry is treated in strict confidence, whatever stage you're at.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
-          <a href="/#contact" class="btn-gold inline-flex items-center justify-center font-body text-xs font-semibold tracking-[0.14em] uppercase text-black bg-gold rounded-md px-8 py-4">
-            Get in touch
-          </a>
-          <a href="mailto:info@rs1.uk" class="explore-link text-sm">info@rs1.uk</a>
-        </div>
-      </div>
-    </section>
+    <!-- Making an enquiry: what to tell us, what to prepare, working with advisers -->
+    <GuidanceSections sections={acquisitionGuidance} label="Making an acquisition enquiry" />
+
+    <Faq items={acquisitionFaqs} id="acquisition-questions" />
+
+    <PageCta {...acquisitionsCta} />
   </main>
 
   <Footer onHome={false} />
