@@ -144,7 +144,7 @@ export const faqs: FaqItem[] = [
   {
     question: 'Is my enquiry confidential?',
     answer:
-      'Yes. Every enquiry — from an owner, lender, insolvency practitioner or advisor — is treated in strict confidence from first contact through to completion.',
+      'Yes. Every enquiry — from an owner, lender, insolvency practitioner or adviser — is treated in strict confidence from first contact through to completion.',
   },
   {
     question: 'Do you work with insolvency practitioners on accelerated or distressed sales?',
@@ -181,7 +181,7 @@ export const audienceCards: AudienceCard[] = [
     description: 'Speed and certainty on time-critical processes and asset sales.',
   },
   {
-    title: 'Professional Advisors',
+    title: 'Professional Advisers',
     description: 'A responsive capital and turnaround partner for your clients.',
   },
 ];
@@ -220,7 +220,7 @@ export const whatsapp = {
 
 /** "The Businesses We Buy" acquisitions page */
 export const acquisitionsIntro =
-  'We acquire companies across the UK and Europe, working directly with owners and alongside lenders, insolvency practitioners and professional advisors. Every business is different, but the situations we buy into fall into one of three categories.';
+  'We acquire companies across the UK and Europe, working directly with owners and alongside lenders, insolvency practitioners and professional advisers. Every business is different, but the situations we buy into fall into one of three categories.';
 
 export const acquisitionSituations = [
   {
@@ -263,7 +263,7 @@ export const acquisitionGuidance: GuidanceSection[] = [
       "A short business overview is useful for the first conversation. Include the sector, operating locations, approximate turnover and the reason for considering a sale. Explain whether you are the owner or a professional adviser acting on the owner's behalf.",
       'Where available, recent management accounts, a cash-flow forecast and a summary of borrowing can help explain the circumstances. Identify material deadlines, shareholder issues or operational pressures. Further information can be discussed privately once the appropriate arrangements are in place.',
     ],
-    note: 'Do not include confidential financial information in a public review or Google post. Use the private contact channel to discuss how information should be shared.',
+    note: 'Please contact us privately to agree how confidential business information should be shared.',
   },
   {
     id: 'professional-advisers',
@@ -278,7 +278,7 @@ export const acquisitionFaqs: FaqItem[] = [
   {
     question: 'Does a business need to be in distress?',
     answer:
-      'No. The existing RS1 acquisition approach also includes retirement, succession and time-critical situations. Explain the circumstances so the opportunity can be assessed on its own facts.',
+      'No. We also consider retirement, succession and time-critical sales. Explain the circumstances so the opportunity can be assessed on its own facts.',
   },
   {
     question: 'Can I discuss a sale before deciding to proceed?',
@@ -293,7 +293,7 @@ export const acquisitionFaqs: FaqItem[] = [
   {
     question: 'Do you consider UK and European businesses?',
     answer:
-      "RS1's stated acquisition focus covers the UK and Europe. Include the business's operating locations in your enquiry so the opportunity can be assessed.",
+      "We consider businesses across the UK and Europe. Include the business's operating locations in your enquiry so the opportunity can be assessed.",
   },
 ];
 
