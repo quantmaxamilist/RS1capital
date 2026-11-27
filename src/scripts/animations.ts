@@ -160,7 +160,8 @@ function initHeroAnimations(): void {
       { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out', stagger: 0.12 },
       '-=0.45',
     )
-    .from('.hero-sub', { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out' }, '-=0.4');
+    .from('.hero-sub', { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out' }, '-=0.4')
+    .from('.hero-actions', { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out' }, '-=0.45');
 }
 
 function initScrollReveals(): void {
