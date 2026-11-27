@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
-import { footerLinks } from '../data/site';
+import Icon from './Icon.astro';
+import { footerLinks, social } from '../data/site';
 
 interface Props {
   onHome?: boolean;
@@ -60,24 +61,31 @@ const resolve = (href: string) => (!onHome && href.startsWith('#') ? `/${href}` 
     </div>
 
     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-      <div class="flex items-center gap-4">
-        <!-- PLACEHOLDER: swap # for real LinkedIn URL -->
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
-          aria-label="LinkedIn"
-        >
-          <i class="fa-brands fa-linkedin-in text-lg" aria-hidden="true"></i>
-        </a>
-      </div>
+      {/* LinkedIn shows only once a verified URL is set in data/site.ts (social.linkedin).
+          Until then an empty box of the same size keeps the row laid out as before. */}
+      {
+        social.linkedin ? (
+          <div class="flex items-center gap-4">
+            <a
+              href={social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-mist/50 hover:text-gold transition-colors w-10 h-10 flex items-center justify-center"
+              aria-label="RS1 Capital on LinkedIn"
+            >
+              <Icon name="linkedin-in" class="text-lg" />
+            </a>
+          </div>
+        ) : (
+          <div class="hidden md:block w-10 h-10" aria-hidden="true" />
+        )
+      }
 
-      <p class="font-body text-xs text-mist/40">
+      <p class="font-body text-xs text-mist/60">
         © 2026 RS1 Capital Limited. All rights reserved.
       </p>
 
-      <a href="/privacy" class="font-body text-xs text-mist/50 hover:text-gold transition-colors">
+      <a href="/privacy" class="font-body text-xs text-mist/60 hover:text-gold transition-colors">
         Privacy
       </a>
     </div>

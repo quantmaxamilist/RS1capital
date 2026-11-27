@@ -12,9 +12,13 @@ import MeetTheNetwork from '../components/MeetTheNetwork.astro';
 import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+
+const title = 'Business Acquisitions & Turnaround | RS1 Capital';
+const description =
+  'RS1 Capital supports businesses across the UK and Europe through acquisitions, investment, private lending, turnaround and restructuring.';
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <AnnouncementBar />
   <Nav />
   <main>

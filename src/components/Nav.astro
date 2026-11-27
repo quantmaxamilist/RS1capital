@@ -92,9 +92,17 @@ const resolve = (href: string) => (!onHome && href.startsWith('#') ? `/${href}` 
     }
   }
 
+  /* Closed: taken out of the tab order and the accessibility tree, after the fade-out finishes. */
+  #mobile-menu {
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+
   #mobile-menu.open {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s;
   }
 
   #nav-toggle.open .nav-bar:nth-child(1) {

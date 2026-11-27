@@ -1,5 +1,8 @@
 ﻿---
 import '../styles/global.css';
+import { company, social } from '../data/site';
+import cormorantLatin from '../assets/fonts/cormorant-garamond-latin-wght-normal.woff2?url';
+import hankenLatin from '../assets/fonts/hanken-grotesk-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -7,66 +10,103 @@ interface Props {
 }
 
 const {
-  title = 'RS1 Capital Limited | Specialist Investment, Lending & Advisory',
-  description =
-    'RS1 Capital Limited is a specialist investment, lending and advisory firm supporting businesses across the UK and Europe — providing capital, operational turnaround and strategic advice where speed, certainty and pragmatism matter.',
+  title = 'Business Acquisitions & Turnaround | RS1 Capital',
+  description = 'RS1 Capital supports businesses across the UK and Europe through acquisitions, investment, private lending, turnaround and restructuring.',
 } = Astro.props;
+
+// Preferred address: https://www.rs1.uk — every page points at its own URL on it, with no trailing slash.
+const site = Astro.site ?? new URL('https://www.rs1.uk');
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonical = new URL(path, site).href;
+const home = new URL('/', site).href;
+const ogImage = new URL('/og-image.jpg', site).href;
+
+// Only verified profiles are published.
+const sameAs = [social.linkedin].filter(Boolean);
 
 const schemaLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'RS1 Capital Limited',
-  description,
-  url: 'https://rs1.uk',
-  email: 'info@rs1.uk',
-  logo: 'https://rs1.uk/logo.png',
-  address: [
+  '@graph': [
     {
-      '@type': 'PostalAddress',
-      name: 'Spain Office',
-      streetAddress: 'C/ San Fernando 34',
-      addressLocality: 'Mahón',
-      addressRegion: 'Balearic Islands',
-      postalCode: '07702',
-      addressCountry: 'ES',
+      '@type': 'Organization',
+      '@id': `${home}#organization`,
+      name: company.legalName,
+      legalName: company.legalName,
+      alternateName: company.name,
+      description: company.description,
+      url: home,
+      email: company.email,
+      logo: new URL('/logo-512.png', site).href,
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'Companies House company number',
+        value: company.number,
+      },
+      address: [
+        {
+          '@type': 'PostalAddress',
+          name: 'Spain Office',
+          streetAddress: 'C/ San Fernando 34',
+          addressLocality: 'Mahón',
+          addressRegion: 'Balearic Islands',
+          postalCode: '07702',
+          addressCountry: 'ES',
+        },
+        {
+          '@type': 'PostalAddress',
+          name: 'United Kingdom Office',
+          streetAddress: '160 City Road',
+          addressLocality: 'London',
+          postalCode: 'EC1V 2NX',
+          addressCountry: 'GB',
+        },
+      ],
+      ...(sameAs.length ? { sameAs } : {}),
     },
     {
-      '@type': 'PostalAddress',
-      name: 'United Kingdom Office',
-      streetAddress: '160 City Road',
-      addressLocality: 'London',
-      postalCode: 'EC1V 2NX',
-      addressCountry: 'GB',
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      name: company.name,
+      url: home,
+      inLanguage: 'en-GB',
+      publisher: { '@id': `${home}#organization` },
     },
   ],
-  sameAs: ['https://www.linkedin.com/company/rs1-capital'],
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#080808" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RS1 Capital — capital and expertise for critical moments." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Fonts are served from this site. Preload the two files every page needs. -->
+    <link rel="preload" href={cormorantLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={hankenLatin} as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(schemaLd)} />
   </head>
   <body class="bg-black text-mist antialiased">

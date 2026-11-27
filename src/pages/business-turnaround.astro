@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import GuidanceSections from '../components/GuidanceSections.astro';
+import Faq from '../components/Faq.astro';
+import PageCta from '../components/PageCta.astro';
+import { turnaround, turnaroundGuidance, turnaroundFaqs, turnaroundCta } from '../data/site';
+---
+
+<Layout title={turnaround.title} description={turnaround.description}>
+  <AnnouncementBar />
+  <Nav onHome={false} />
+
+  <main>
+    <!-- Intro -->
+    <section class="relative bg-black pt-40 lg:pt-48 pb-20 lg:pb-24 overflow-hidden" aria-labelledby="turnaround-heading" data-glow-follow>
+      <div class="approach-glow" aria-hidden="true"><div class="approach-glow__spot"></div></div>
+
+      <div class="max-w-4xl mx-auto px-6 lg:px-10 relative z-[1]">
+        <p class="eyebrow mb-5" data-reveal>Services</p>
+        <h1
+          id="turnaround-heading"
+          class="heading-display text-[clamp(1.75rem,1.1rem_+_3.3vw,3.75rem)] text-mist mb-8 [text-wrap:balance]"
+          data-reveal
+        >
+          {turnaround.heading}
+        </h1>
+        <p class="font-body text-lg text-mist/75 leading-relaxed max-w-2xl" data-reveal>
+          {turnaround.intro}
+        </p>
+      </div>
+    </section>
+
+    <!-- Understanding the pressures, the available options, when to contact RS1 -->
+    <GuidanceSections sections={turnaroundGuidance} label="How a turnaround discussion works" />
+
+    <Faq items={turnaroundFaqs} heading={turnaround.faqHeading} id="turnaround-questions" balanceHeading />
+
+    <PageCta {...turnaroundCta} />
+  </main>
+
+  <Footer onHome={false} />
+</Layout>
+
+<script>
+  import '../scripts/animations.ts';
+</script>
+
+<style is:global>
+  :root {
+    --announcement-height: 40px;
+  }
+</style>

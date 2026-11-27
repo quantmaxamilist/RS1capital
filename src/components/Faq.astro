@@ -1,21 +1,42 @@
 ---
-import { faqs } from '../data/site';
+import { faqs, type FaqItem } from '../data/site';
+
+interface Props {
+  /** Questions to show. Defaults to the homepage set. */
+  items?: readonly FaqItem[];
+  heading?: string;
+  /** Anchor for the section. The homepage keeps `faq`, which the menu links to. */
+  id?: string;
+  /** Even out the lines of a longer heading that wraps. Off by default, so the homepage is unchanged. */
+  balanceHeading?: boolean;
+}
+
+const {
+  items = faqs,
+  heading = 'Frequently asked questions',
+  id = 'faq',
+  balanceHeading = false,
+} = Astro.props;
+const headingId = `${id}-heading`;
 ---
 
-<section id="faq" class="bg-black py-24 lg:py-32" aria-labelledby="faq-heading">
+<section id={id} class="bg-black py-24 lg:py-32" aria-labelledby={headingId}>
   <div class="max-w-3xl mx-auto px-6 lg:px-10">
     <p class="eyebrow mb-4 text-center" data-reveal>FAQ</p>
     <h2
-      id="faq-heading"
-      class="heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-14 text-center"
+      id={headingId}
+      class:list={[
+        'heading-display text-[clamp(2rem,4vw,3rem)] text-mist mb-14 text-center',
+        balanceHeading && '[text-wrap:balance]',
+      ]}
       data-reveal
     >
-      Frequently asked questions
+      {heading}
     </h2>
 
     <div class="divide-y divide-white/10 border-t border-b border-white/10" data-reveal-group data-reveal-stagger="0.06">
       {
-        faqs.map((item) => (
+        items.map((item) => (
           <details class="faq-item group" data-reveal>
             <summary class="faq-summary">
               <span class="font-display text-lg lg:text-xl font-semibold text-mist pr-6">{item.question}</span>

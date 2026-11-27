@@ -1,4 +1,8 @@
 ---
+// 192px lossless copy of the logo (11 KB) for the header and footer, where it shows at 48–64px.
+// The full-size public/logo.png is unchanged and still served at /logo.png.
+import logo from '../assets/logo-nav.webp';
+
 interface Props {
   variant?: 'full' | 'mark';
   class?: string;
@@ -6,7 +10,6 @@ interface Props {
 
 const { variant = 'full', class: className = '' } = Astro.props;
 
-const src = '/logo.png';
 const imgClass =
   variant === 'mark'
     ? 'h-12 md:h-14 w-auto max-w-[min(100%,220px)]'
@@ -14,5 +17,5 @@ const imgClass =
 ---
 
 <a href="/" class:list={['inline-flex items-center', className]} aria-label="RS1 Capital home">
-  <img src={src} alt="RS1 Capital" class={imgClass} width="200" height="80" />
+  <img src={logo.src} alt="RS1 Capital" class={imgClass} width="64" height="64" decoding="async" />
 </a>

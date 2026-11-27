@@ -14,12 +14,11 @@ import { services } from '../data/site';
       </h2>
     </div>
 
-    <div class="portfolio-strip" role="list" data-reveal-group data-reveal-stagger="0.08">
+    <div class="portfolio-strip" data-reveal-group data-reveal-stagger="0.08">
       {
         services.map((service) => (
           <article
             class="portfolio-card hover-lift-card relative bg-black group"
-            role="listitem"
             tabindex="0"
             data-service={service.id}
             data-reveal
@@ -28,8 +27,7 @@ import { services } from '../data/site';
             <div
               class="absolute inset-0 bg-cover bg-center transition-opacity duration-[400ms]"
               style={{ background: service.gradient }}
-              role="img"
-              aria-label={`${service.name} — abstract placeholder panel`}
+              aria-hidden="true"
             ></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 

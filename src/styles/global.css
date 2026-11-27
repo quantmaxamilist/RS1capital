@@ -1,5 +1,48 @@
 @import "tailwindcss";
 
+/*
+ * Fonts — served from this site (no third-party font requests).
+ * Cormorant Garamond and Hanken Grotesk, SIL Open Font License 1.1 (see src/assets/fonts).
+ * Variable files: one file per script covers every weight the site uses.
+ * The weight ranges match what was loaded before (Cormorant 600–700, Hanken 400–600),
+ * so lighter or heavier requests resolve to the same weights they always did.
+ */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 700;
+  src: url("../assets/fonts/cormorant-garamond-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 700;
+  src: url("../assets/fonts/cormorant-garamond-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 600;
+  src: url("../assets/fonts/hanken-grotesk-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 600;
+  src: url("../assets/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @theme {
   --color-black: #080808;
   --color-panel: #111111;
@@ -67,6 +110,17 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+/* Inline SVG icons (components/Icon.astro) — sized by the surrounding text size */
+.icon-inline {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1em;
+  width: auto;
+  line-height: 1;
+  vertical-align: -0.125em;
+  overflow: visible;
+}
+
 /* Eyebrow utility */
 .eyebrow {
   font-family: var(--font-body);
@@ -107,6 +161,21 @@ button:focus-visible {
   background-size: 100% 1px;
 }
 
+/* Links inside a sentence: gold plus a fine underline, so they are not told apart by colour alone */
+.text-link {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: rgba(201, 162, 39, 0.55);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.text-link:hover {
+  color: var(--color-gold-2);
+  text-decoration-color: currentColor;
+}
+
 /* Nav + footer text links */
 .nav-link {
   position: relative;
@@ -132,6 +201,21 @@ button:focus-visible {
   background-color: var(--color-gold-2);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(201, 162, 39, 0.25);
+}
+
+/* Outline button: the quieter partner beside a gold one */
+.btn-line {
+  border: 1px solid rgba(201, 162, 39, 0.65);
+  background-color: rgba(8, 8, 8, 0.4);
+  color: var(--color-mist);
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-line:hover {
+  border-color: var(--color-gold-2);
+  background-color: rgba(8, 8, 8, 0.6);
+  color: var(--color-gold-2);
+  transform: translateY(-2px);
 }
 
 /* Card hover lift */
@@ -275,6 +359,18 @@ button:focus-visible {
   }
 }
 
+/* Desktop: the horizon sits at the top of the band the hero keeps free at its foot
+   (--hero-band, set in Hero.astro), and the glow keeps the same reach above it. */
+@media (min-width: 768px) {
+  .hero-glow__rim-track {
+    top: calc(100% - var(--hero-band, 26%));
+  }
+
+  .hero-glow__bloom-track {
+    height: calc(var(--hero-band, 26%) + 26%);
+  }
+}
+
 /* Approach — soft radial glow behind triangle */
 .approach-glow {
   position: absolute;
@@ -323,6 +419,7 @@ button:focus-visible {
   .hero-eyebrow,
   .hero-line,
   .hero-sub,
+  .hero-actions,
   [data-reveal],
   .triangle-path,
   .triangle-highlight,
@@ -351,6 +448,10 @@ button:focus-visible {
   .btn-gold:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  .btn-line:hover {
+    transform: none;
   }
 }
 
