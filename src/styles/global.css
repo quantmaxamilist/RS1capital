@@ -203,6 +203,21 @@ button:focus-visible {
   box-shadow: 0 8px 24px rgba(201, 162, 39, 0.25);
 }
 
+/* Outline button: the quieter partner beside a gold one */
+.btn-line {
+  border: 1px solid rgba(201, 162, 39, 0.65);
+  background-color: rgba(8, 8, 8, 0.4);
+  color: var(--color-mist);
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-line:hover {
+  border-color: var(--color-gold-2);
+  background-color: rgba(8, 8, 8, 0.6);
+  color: var(--color-gold-2);
+  transform: translateY(-2px);
+}
+
 /* Card hover lift */
 .hover-lift-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -344,14 +359,15 @@ button:focus-visible {
   }
 }
 
-/* Short desktop windows and phones held sideways: keep the horizon below the hero text */
-@media (min-width: 768px) and (max-height: 699px) {
+/* Desktop: the horizon sits at the top of the band the hero keeps free at its foot
+   (--hero-band, set in Hero.astro), and the glow keeps the same reach above it. */
+@media (min-width: 768px) {
   .hero-glow__rim-track {
-    top: 92%;
+    top: calc(100% - var(--hero-band, 26%));
   }
 
   .hero-glow__bloom-track {
-    height: 36%;
+    height: calc(var(--hero-band, 26%) + 26%);
   }
 }
 
@@ -403,6 +419,7 @@ button:focus-visible {
   .hero-eyebrow,
   .hero-line,
   .hero-sub,
+  .hero-actions,
   [data-reveal],
   .triangle-path,
   .triangle-highlight,
@@ -431,6 +448,10 @@ button:focus-visible {
   .btn-gold:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  .btn-line:hover {
+    transform: none;
   }
 }
 
